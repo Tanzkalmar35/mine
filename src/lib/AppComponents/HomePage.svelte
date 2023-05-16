@@ -1,5 +1,4 @@
 <script lang="ts">
-
     import AppLogo from "../UiElements/AppLogo.svelte";
 </script>
 
@@ -8,7 +7,7 @@
         <div class="absolute scale-50 left-[-5rem]">
             <AppLogo/>
         </div>
-        <p class="absolute bottom-0 left-[2vh] text-[7rem]">Dashboard</p>
+        <p class="absolute bottom-0 left-[2vh] text-[7rem]">Home</p>
         <div>
             <p class="flex absolute bottom-[1vh] right-[20%] text-5xl">Daily online time (chart)</p>
         </div>
