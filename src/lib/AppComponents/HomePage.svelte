@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AppLogo from "../UiElements/AppLogo.svelte";
+    import AppLogo from "../UiElements/Img/AppLogo.svelte";
 </script>
 
 <div id="home">

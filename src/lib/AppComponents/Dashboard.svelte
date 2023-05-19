@@ -1,7 +1,7 @@
 <script lang="ts">
     import ProjectCard from "../SubComponents/ProjectCard.svelte";
-    import AddButton from "../UiElements/AddButton.svelte";
-    import AddProjectModal from "../Modals/AddProjectModal.svelte";
+    import AddButton from "../UiElements/Button/AddButton.svelte";
+    import AddProjectModal from "../UiElements/Modals/AddProjectModal.svelte";
 </script>
 
 <div class="flex text-5xl" id="Dashboard">
