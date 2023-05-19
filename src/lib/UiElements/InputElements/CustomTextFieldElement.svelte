@@ -1,5 +1,6 @@
 <script lang="ts">
-    export let placeHolder: string;
+  export let textValue;
+  export let placeHolder: string;
 </script>
 
-<textarea class="textarea textarea-primary m-7" placeholder={placeHolder}></textarea>
+<textarea bind:value={textValue} class="textarea textarea-primary m-7" placeholder={placeHolder}></textarea>
