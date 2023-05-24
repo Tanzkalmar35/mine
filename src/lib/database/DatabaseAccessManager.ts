@@ -56,3 +56,12 @@ export function storeProject(name: string, description: string): void {
   writeIntoDatabase("Users/Projects/", values)
 }
 
+export function getProjectNames(): Array<string> {
+  // TODO: getting all project names and returning them as a Array
+}
+
+export function getProjectDescriptions(): Array<string> {
+  // TODO: getting all project descriptions and returning them as an array
+}
+
+
