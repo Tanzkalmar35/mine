@@ -6,7 +6,8 @@
     import MdSettings from 'svelte-icons/md/MdSettings.svelte'
 </script>
 
-<div class="w-fit h-fit mt-7 px-5 py-3 flex relative bg-none rounded-[5vh] border-2 border-black gap-5" id="navbar">
+<div class="w-fit h-fit mt-[4vh] px-5 py-3 flex relative bg-none rounded-[5vh] border-2 border-black gap-5"
+     id="navbar">
     <NavComponent imgUrl={MdHome} name="Home"/>
     <NavComponent imgUrl={MdDashboard} name="Dashboard"/>
     <NavComponent imgUrl={MdSettings} name="Settings"/>

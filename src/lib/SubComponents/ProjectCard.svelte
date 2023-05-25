@@ -1,17 +1,24 @@
 <script lang="ts">
-   export let projectTitle: string;
-   export let projectDescription: string;
 
-  function openProject() {}  
+    import {openIntellijWithFolder} from "../OsOperations/OpenApplication";
+
+    export let projectTitle: string;
+    export let projectDescription: string;
+
+    function openProject() {
+        // TODO: Do not forget to update the currently shown projects
+        openIntellijWithFolder("C:/Users/fabia/Desktop/coding/Java")
+        console.log("Opening project: " + projectTitle)
+    }
 
 </script>
 
-<div class="card w-96 bg-primary text-primary-content">
-  <div class="card-body">
-    <h2 class="card-title text-2xl">{projectTitle}</h2>
-    <p class="text-lg" >{projectDescription}</p>
-    <div class="card-actions justify-end">
-      <button on:click={openProject} class="btn">Open</button>
+<div class="card w-[20vw] max-h-[35vh] bg-primary text-primary-content m-[1rem]">
+    <div class="card-body break-words overflow-hidden">
+        <h2 class="card-title text-3xl">{projectTitle}</h2>
+        <p class="text-lg overflow-hidden">{projectDescription}</p>
+        <div class="card-actions justify-end">
+            <button class="btn" on:click={openProject}>Open</button>
+        </div>
     </div>
-  </div>
 </div>

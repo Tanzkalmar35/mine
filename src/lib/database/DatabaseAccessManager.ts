@@ -2,22 +2,21 @@
  * Contains all read and write functionality for the database
  */
 
-import { ref, set, push, onValue } from "firebase/database";
-import { database } from "./DatabaseConfig";
-import { currentUserPath } from "../Store" 
+import {onValue, push, ref, set} from "firebase/database";
+import {database} from "./DatabaseConfig";
 
 /*
  * Type definitions
  */
 type Project = {
-  name: string,
-  description: string,
+    name: string,
+    description: string,
 }
 
 type User = {
-  firstname: string,
-  lastname: string,
-  email: string,
+    firstname: string,
+    lastname: string,
+    email: string,
 }
 
 /*
@@ -25,22 +24,22 @@ type User = {
  * Every write action that needs to be performed needs to call this function
  */
 function writeIntoDatabase(path: string, values: Project | User) {
-  const dbRef = ref(database, path);
-  const newRef = push(dbRef);
-  
-  set(newRef, values);
+    const dbRef = ref(database, path);
+    const newRef = push(dbRef);
+
+    set(newRef, values);
 }
 
 /*
  * Creates a new user. 
  */
 export function createNewUser(firstname: string, lastname: string, email: string): void {
-  const values: User = {
-    firstname,
-    lastname,
-    email,
-  }
-   writeIntoDatabase("Users/", values)
+    const values: User = {
+        firstname,
+        lastname,
+        email,
+    }
+    writeIntoDatabase("Users/", values)
 }
 
 /*
@@ -50,28 +49,30 @@ export function createNewUser(firstname: string, lastname: string, email: string
  */
 
 export function storeProject(name: string, description: string): void {
-  const values: Project = {
-    name, 
-   description
-  }
-  writeIntoDatabase("Users/Projects/", values)
+    const values: Project = {
+        name,
+        description
+    }
+    writeIntoDatabase("Users/Projects/", values)
 }
 
 export function getProjectData(): Promise<Array<{ name: string, description: string }>> {
-  return new Promise((resolve) => {
-    const projectData = [];
-    onValue(ref(database, "Users/Projects/"), (snapshot) => {
-      const data = snapshot.val();
-      const objectsArray = Object.values(data);
-      const projects = objectsArray.map(item => ({
-        name: item.name,
-        description: item.description || "Not available"
-      }));
-      projectData.push(...projects);
-      console.log(projectData)
-      resolve(projectData);
-      console.log("Fetching data: " + projectData)
+    return new Promise((resolve) => {
+
+        const projectData: Array<any> = [];
+
+        onValue(ref(database, "Users/Projects/"), (snapshot) => {
+
+            const data = snapshot.val();
+            const objectsArray: Array<any> = Object.values(data);
+            const projects = objectsArray.map(({description, name}) => ({
+                name: name,
+                description: description
+            }));
+
+            projectData.push(...projects);
+            resolve(projectData);
+        });
     });
-  });
 }
 

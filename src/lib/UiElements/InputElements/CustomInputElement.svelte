@@ -4,5 +4,6 @@
 
 </script>
 
-<input bind:value={textValue} class="input input-bordered input-primary w-full max-w-xs m-7" placeholder={placeHolder}
+<input bind:value={textValue} class="input input-bordered input-primary w-full max-w-xs m-7 text-lg"
+       placeholder={placeHolder}
        type="text"/>
