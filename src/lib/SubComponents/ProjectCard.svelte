@@ -1,12 +1,17 @@
 <script lang="ts">
-    export let projectTitle: string;
-    export let projectDescription: string;
+   export let projectTitle: string;
+   export let projectDescription: string;
+
+  function openProject() {}  
 
 </script>
 
-<div class="w-fit h-fit rounded-[1vh] bg-secondary">
-    <div class="mt-20">
-        {projectTitle} <br/>
-        {projectDescription}
+<div class="card w-96 bg-primary text-primary-content">
+  <div class="card-body">
+    <h2 class="card-title text-2xl">{projectTitle}</h2>
+    <p class="text-lg" >{projectDescription}</p>
+    <div class="card-actions justify-end">
+      <button on:click={openProject} class="btn">Open</button>
     </div>
+  </div>
 </div>

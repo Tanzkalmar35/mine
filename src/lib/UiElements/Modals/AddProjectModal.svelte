@@ -3,7 +3,7 @@
     import CustomTextFieldElement from "../InputElements/CustomTextFieldElement.svelte";
     import CustomInputElement from "../InputElements/CustomInputElement.svelte";
     import CustomFolderInput from "../InputElements/CustomFolderInput.svelte";
-    import { storeProject, getProjectNames, getProjectDescription } from "../../database/DatabaseAccessManager.ts"; 
+    import { storeProject } from "../../database/DatabaseAccessManager.ts"; 
   
 
     let projectTitle: string;
