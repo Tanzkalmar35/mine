@@ -1,13 +1,14 @@
 <script lang="ts">
-
-    import {openIntellijWithFolder} from "../OsOperations/OpenApplication";
+    import {intellijUltimatePath} from "../OsOperations/OsVariableStore";
+    import {openEditorWithFolder} from "../OsOperations/OpenApplication";
 
     export let projectTitle: string;
     export let projectDescription: string;
 
     function openProject() {
         // TODO: Do not forget to update the currently shown projects
-        openIntellijWithFolder("C:/Users/fabia/Desktop/coding/Java")
+        openEditorWithFolder("C:/Users/fabia/Desktop/coding/Java")
+        console.log("Intellij location: " + $intellijUltimatePath)
         console.log("Opening project: " + projectTitle)
     }
 

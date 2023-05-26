@@ -11,20 +11,6 @@
         projectData = await getProjectData();
     });
 
-    let disableScroll = false;
-
-    $: {
-        if (disableScroll) {
-            window.addEventListener('scroll', preventScroll);
-        } else {
-            window.removeEventListener('scroll', preventScroll);
-        }
-    }
-
-    function preventScroll(e) {
-        e.preventDefault();
-    }
-
 </script>
 
 <div class="flex text-5xl" id="Dashboard">
