@@ -4,15 +4,16 @@
 
     export let projectTitle: string;
     export let projectDescription: string;
+    export let projectPath: string;
 
     function openProject() {
         // TODO: Do not forget to update the currently shown projects
-        openEditorWithFolder("C:/Users/fabia/Desktop/coding/Java")
+        openEditorWithFolder(projectPath)
     }
 
 </script>
 
-<div class="card w-[20vw] max-h-[35vh] bg-base-100 text-primary-content m-[1rem]">
+<div class="card w-[20vw] h-[35vh] bg-base-100 text-primary-content m-[1rem]">
     <div class="card-body break-words overflow-hidden">
         <h2 class="card-title text-3xl italic text-white">{projectTitle}</h2>
         <p class="text-lg overflow-hidden text-gray-400">{projectDescription}</p>

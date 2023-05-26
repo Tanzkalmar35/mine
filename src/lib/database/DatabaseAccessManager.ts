@@ -11,6 +11,7 @@ import {database} from "./DatabaseConfig";
 type Project = {
     name: string,
     description: string,
+    path: string,
 }
 
 type User = {
@@ -44,19 +45,19 @@ export function createNewUser(firstname: string, lastname: string, email: string
 
 /*
  * Stores a new project in the database.
- * TODO: add functionality for the project (path).
  * TODO: automatically make the Project a child of the currently logged in user.
  */
 
-export function storeProject(name: string, description: string): void {
+export function storeProject(name: string, description: string, path: string): void {
     const values: Project = {
         name,
-        description
+        description,
+        path
     }
     writeIntoDatabase("Users/Projects/", values)
 }
 
-export function getProjectData(): Promise<Array<{ name: string, description: string }>> {
+export function getProjectData(): Promise<Array<{ name: string, description: string, path: string }>> {
     return new Promise((resolve) => {
 
         const projectData: Array<any> = [];
@@ -65,9 +66,10 @@ export function getProjectData(): Promise<Array<{ name: string, description: str
 
             const data = snapshot.val();
             const objectsArray: Array<any> = Object.values(data);
-            const projects = objectsArray.map(({description, name}) => ({
+            const projects = objectsArray.map(({description, name, path}) => ({
                 name: name,
-                description: description
+                description: description,
+                path: path,
             }));
 
             projectData.push(...projects);

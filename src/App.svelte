@@ -7,9 +7,9 @@
 
 </script>
 
-<main class="w-screen h-screen flex justify-center text-black bg-accent" id="mainapp">
+<main class="w-screen h-screen flex justify-center text-black bg-accent">
     <div class="w-full h-full absolute z-1" id="content">
-        {#if currentUrl === "/Home"}
+        {#if currentUrl === "/"}
             <HomePage/>
         {/if}
         {#if currentUrl === "/Dashboard"}

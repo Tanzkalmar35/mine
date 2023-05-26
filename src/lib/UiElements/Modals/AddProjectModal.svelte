@@ -1,22 +1,26 @@
 <script lang="ts">
-
     import CustomTextFieldElement from "../InputElements/CustomTextFieldElement.svelte";
+
     import CustomInputElement from "../InputElements/CustomInputElement.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
     import ChooseFolderButton from "../Buttons/ChooseFolderButton.svelte";
 
+    let disabled = true;
 
     let projectTitle: string;
     let projectDescription: string;
+    let projectPath: string = "";
 
     function addProject(): void {
-        storeProject(projectTitle, projectDescription)
+        storeProject(projectTitle, projectDescription, projectPath)
         clearInputs();
     }
 
     function clearInputs(): void {
         projectTitle = "";
         projectDescription = "";
+        projectPath = "";
+
     }
 
 </script>
@@ -28,7 +32,10 @@
         <div class="flex flex-col">
             <CustomInputElement bind:textValue={projectTitle} placeHolder="Project Name"/>
             <CustomTextFieldElement bind:textValue={projectDescription} placeHolder="Project Description"/>
-            <ChooseFolderButton/>
+            <div class="flex items-center">
+                <ChooseFolderButton bind:currentFolderPath={projectPath}/>
+                <CustomInputElement bind:disabled={disabled} textValue={projectPath}/>
+            </div>
         </div>
         <div class="modal-action">
             <label class="btn" for="my-modal-5" on:click={clearInputs}>Cancel</label>

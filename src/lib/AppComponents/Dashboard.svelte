@@ -11,6 +11,8 @@
         projectData = await getProjectData();
     });
 
+    //TODO: Only load as many as screen can fit (8) and add a load more button at the bottom that also increases the page's size (App.svelte)
+
 </script>
 
 <div class="flex text-5xl justify-center" id="Dashboard">
@@ -24,7 +26,8 @@
             </div>
         {/if}
         {#each projectData as project}
-            <ProjectCard projectTitle={project.name} projectDescription={project.description}/>
+            <ProjectCard projectTitle={project.name} projectDescription={project.description}
+                         projectPath={project.path}/>
         {/each}
     </div>
     <AddProjectModal/>

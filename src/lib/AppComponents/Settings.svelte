@@ -2,6 +2,6 @@
 
 </script>
 
-<div>
+<div class="text-white">
     <p>Settings page</p>
 </div>
