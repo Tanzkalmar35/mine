@@ -1,9 +1,9 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import ProjectCard from "../SubComponents/ProjectCard.svelte";
-    import AddButton from "../UiElements/Button/AddButton.svelte";
     import AddProjectModal from "../UiElements/Modals/AddProjectModal.svelte";
     import {getProjectData} from "../database/DatabaseAccessManager.ts";
+    import DashboardNavigation from "../SubComponents/Navigation/DashboardNavigation.svelte";
 
     let projectData = [];
 
@@ -13,7 +13,10 @@
 
 </script>
 
-<div class="flex text-5xl" id="Dashboard">
+<div class="flex text-5xl justify-center" id="Dashboard">
+    <div class="absolute z-10">
+        <DashboardNavigation/>
+    </div>
     <div class="flex flex-wrap mt-[12vh] justify-center">
         {#if projectData.length === 0}
             <div class="text-3xl text-white">
@@ -23,9 +26,6 @@
         {#each projectData as project}
             <ProjectCard projectTitle={project.name} projectDescription={project.description}/>
         {/each}
-    </div>
-    <div class="absolute right-[5vw] mt-[4vh]">
-        <AddButton/>
     </div>
     <AddProjectModal/>
 </div>

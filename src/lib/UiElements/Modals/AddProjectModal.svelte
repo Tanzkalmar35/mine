@@ -2,8 +2,8 @@
 
     import CustomTextFieldElement from "../InputElements/CustomTextFieldElement.svelte";
     import CustomInputElement from "../InputElements/CustomInputElement.svelte";
-    import CustomFolderInput from "../InputElements/CustomFolderInput.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
+    import ChooseFolderButton from "../Buttons/ChooseFolderButton.svelte";
 
 
     let projectTitle: string;
@@ -28,7 +28,7 @@
         <div class="flex flex-col">
             <CustomInputElement bind:textValue={projectTitle} placeHolder="Project Name"/>
             <CustomTextFieldElement bind:textValue={projectDescription} placeHolder="Project Description"/>
-            <CustomFolderInput label="Choose project location"/>
+            <ChooseFolderButton/>
         </div>
         <div class="modal-action">
             <label class="btn" for="my-modal-5" on:click={clearInputs}>Cancel</label>
