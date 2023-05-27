@@ -4,6 +4,7 @@
 
 import {onValue, push, ref, set} from "firebase/database";
 import {database} from "./DatabaseConfig";
+import {ALERT_TYPE, displayAlert} from "../AppConfig";
 
 /*
  * Type definitions
@@ -28,7 +29,11 @@ function writeIntoDatabase(path: string, values: Project | User) {
     const dbRef = ref(database, path);
     const newRef = push(dbRef);
 
-    set(newRef, values);
+    set(newRef, values).then(() => {
+        displayAlert("Successfully added the project.", ALERT_TYPE.SUCCESS, 5000);
+    }).catch(() => {
+        displayAlert("Oops! Something went wrong. Please try again.", ALERT_TYPE.SUCCESS, 5000);
+    });
 }
 
 /*
