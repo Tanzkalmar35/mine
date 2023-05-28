@@ -4,7 +4,10 @@ export const currentUserId = writable("");
 
 export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
 
-// Errors
+// User Management
+export var loggedIn = writable(false);
+
+// Alerts
 export const ALERT_TYPE = {
     ERROR: "ERROR",
     WARNING: "WARNING",
