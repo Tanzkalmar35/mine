@@ -1,7 +1,7 @@
 <script lang="ts">
     import CustomTextFieldElement from "../InputElements/CustomTextFieldElement.svelte";
 
-    import CustomInputElement from "../InputElements/CustomInputElement.svelte";
+    import CustomTextInput from "../InputElements/CustomTextInput.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
     import ChooseFolderButton from "../Buttons/ChooseFolderButton.svelte";
 
@@ -30,11 +30,11 @@
     <div class="modal-box w-11/12 max-w-5xl text-white">
         <h3 class="font-bold text-lg mb-7">Add a project</h3>
         <div class="flex flex-col">
-            <CustomInputElement bind:textValue={projectTitle} placeHolder="Project Name"/>
+            <CustomTextInput bind:textValue={projectTitle} placeHolder="Project Name"/>
             <CustomTextFieldElement bind:textValue={projectDescription} placeHolder="Project Description"/>
             <div class="flex items-center">
                 <ChooseFolderButton bind:currentFolderPath={projectPath}/>
-                <CustomInputElement bind:disabled={disabled} textValue={projectPath}/>
+                <CustomTextInput bind:disabled={disabled} textValue={projectPath}/>
             </div>
         </div>
         <div class="modal-action">
