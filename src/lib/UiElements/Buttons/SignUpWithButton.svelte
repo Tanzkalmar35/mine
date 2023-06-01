@@ -3,7 +3,7 @@
     import GithubLogo from "../Img/GithubLogo.svelte";
 
     export let projectLabel: string;
-    export let company;
+    export let company: string;
 </script>
 
 <button
@@ -18,6 +18,6 @@
         {/if}
     </div>
     <span class="ml-4">
-                  {projectLabel}
-                </span>
+        {projectLabel}
+    </span>
 </button>

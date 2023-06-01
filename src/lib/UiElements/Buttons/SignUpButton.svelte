@@ -1,5 +1,10 @@
+<script lang="ts">
+    function createUser() {}
+</script>
+
 <button
         class="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+        on:click={createUser}
 >
     <svg
             class="w-6 h-6 -ml-2"
@@ -13,7 +18,5 @@
         <circle cx="8.5" cy="7" r="4"/>
         <path d="M20 8v6M23 11h-6"/>
     </svg>
-    <span class="ml-3">
-                  Sign Up
-                </span>
+    <span class="ml-3">Sign Up</span>
 </button>

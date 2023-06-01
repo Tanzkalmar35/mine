@@ -52,7 +52,6 @@ export function createNewUser(firstname: string, lastname: string, email: string
  * Stores a new project in the database.
  * TODO: automatically make the Project a child of the currently logged in user.
  */
-
 export function storeProject(name: string, description: string, path: string): void {
     const values: Project = {
         name,
@@ -62,6 +61,9 @@ export function storeProject(name: string, description: string, path: string): v
     writeIntoDatabase("Users/Projects/", values)
 }
 
+/**
+ * Returns all project's childs stored in the database.
+ */
 export function getProjectData(): Promise<Array<{ name: string, description: string, path: string }>> {
     return new Promise((resolve) => {
 
