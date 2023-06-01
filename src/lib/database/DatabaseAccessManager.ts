@@ -2,9 +2,14 @@
  * Contains all read and write functionality for the database
  */
 
+// Internal imports
+import {auth, database, provider} from "./DatabaseConfig";
+import {ALERT_TYPE, currentUserId, displayAlert, loggedIn} from "../AppConfig";
+
+// Firebase imports
 import {onValue, push, ref, set} from "firebase/database";
-import {database} from "./DatabaseConfig";
-import {ALERT_TYPE, displayAlert} from "../AppConfig";
+import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {get} from "svelte/store";
 
 /*
  * Type definitions
@@ -16,9 +21,8 @@ type Project = {
 }
 
 type User = {
-    firstname: string,
-    lastname: string,
     email: string,
+    password: string,
 }
 
 /*
@@ -37,20 +41,46 @@ function writeIntoDatabase(path: string, values: Project | User) {
 }
 
 /*
- * Creates a new user. 
+ * Creates a new user classically using the email address.
  */
-export function createNewUser(firstname: string, lastname: string, email: string): void {
+export function createNewUserByEmail(email: string, password: string): void {
     const values: User = {
-        firstname,
-        lastname,
         email,
+        password
     }
     writeIntoDatabase("Users/", values)
 }
 
+/**
+ * Creates a new user using Google authentication.
+ */
+export function createNewUserByGoogle(): void {
+    signInWithPopup(auth, provider).then((result): void => {
+
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+
+        currentUserId.set(user.uid);
+        loggedIn.set(true);
+
+    }).catch((error) => {
+
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+
+    });
+}
+
+export function createNewUserByGithub(): void {
+
+}
+
 /*
  * Stores a new project in the database.
- * TODO: automatically make the Project a child of the currently logged in user.
  */
 export function storeProject(name: string, description: string, path: string): void {
     const values: Project = {
@@ -58,7 +88,7 @@ export function storeProject(name: string, description: string, path: string): v
         description,
         path
     }
-    writeIntoDatabase("Users/Projects/", values)
+    writeIntoDatabase("Users/" + get(currentUserId) + "/Projects/", values)
 }
 
 /**

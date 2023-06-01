@@ -1,5 +1,8 @@
 <script lang="ts">
-    function createUser() {}
+
+    function createUser() {
+
+    }
 </script>
 
 <button

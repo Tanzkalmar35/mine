@@ -3,7 +3,8 @@
     import Settings from "./lib/AppComponents/Settings.svelte";
     import HomePage from "./lib/AppComponents/HomePage.svelte";
     import LoginPage from "./lib/AppComponents/LoginPage.svelte";
-    import {loggedIn} from "./lib/AppConfig";
+    import {loggedIn, registerComplete} from "./lib/AppConfig";
+    import PersonalizationProcessPage from "./lib/AppComponents/PersonalizationProcessPage.svelte";
 
     const currentUrl = window.location.pathname;
 
@@ -11,7 +12,13 @@
 
 <main class="w-screen h-screen flex justify-center text-black bg-accent">
     <div class="w-full h-full absolute z-1" id="content">
-        {#if $loggedIn}
+        {#if !$loggedIn}
+            <LoginPage/>
+        {/if}
+        {#if $loggedIn && !$registerComplete}
+            <PersonalizationProcessPage/>
+        {/if}
+        {#if $loggedIn && $registerComplete}
             {#if currentUrl === "/"}
                 <HomePage/>
             {/if}
@@ -21,9 +28,6 @@
             {#if currentUrl === "/Settings"}
                 <Settings/>
             {/if}
-        {/if}
-        {#if !$loggedIn}
-            <LoginPage/>
         {/if}
     </div>
 </main>

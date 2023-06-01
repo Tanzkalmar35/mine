@@ -5,7 +5,8 @@ export const currentUserId = writable("");
 export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
 
 // User Management
-export var loggedIn = writable(false);
+export const loggedIn = writable(false);
+export const registerComplete = writable(false);
 
 // Alerts
 export const ALERT_TYPE = {

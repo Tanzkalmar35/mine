@@ -33,7 +33,7 @@
                             </div>
                         </div>
 
-                        <div class="mx-auto max-w-xs flex flex-col gap-4">
+                        <div class="mx-auto max-w-xs flex flex-col gap-3">
                             <LoginInputElement placeholder="Email" type="email"/>
                             <LoginInputElement placeholder="Password" type="password"/>
                             <SignUpButton/>
