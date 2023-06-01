@@ -1,17 +1,57 @@
 <script lang="ts">
-
-    import CustomTextInput from "../UiElements/InputElements/CustomTextInput.svelte";
-    import CustomPasswordInput from "../UiElements/InputElements/CustomPasswordInput.svelte";
+    import AppLogo from "../UiElements/Img/AppLogo.svelte";
+    import SignUpWithButton from "../UiElements/Buttons/SignUpWithButton.svelte";
+    import LoginHeroImage from "../UiElements/Img/LoginHeroImage.svelte";
+    import SignUpButton from "../UiElements/Buttons/SignUpButton.svelte";
+    import LoginInputElement from "../UiElements/InputElements/LoginInputElement.svelte";
 </script>
 
 <div class="flex justify-center text-white">
-    <div class="h-fit w-fit">
-        <div>
-            <CustomTextInput placeHolder="Your name" type="text"/>
-        </div>
-        <div>
-            <CustomTextInput placeHolder="Your email"/>
-            <CustomPasswordInput placeHolder="Your password"/>
+    <div class="w-screen bg-accent text-gray-900 flex justify-center">
+        <div
+                class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1"
+        >
+            <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
+                <div class="max-w-[15rem] mx-auto">
+                    <AppLogo/>
+                </div>
+                <div class="mt-12 flex flex-col items-center">
+                    <h1 class="text-2xl xl:text-3xl font-extrabold">
+                        Sign up for mine
+                    </h1>
+                    <div class="w-full flex-1 mt-8">
+                        <div class="flex flex-col items-center gap-4">
+                            <SignUpWithButton company="google" projectLabel="Sign up using Google"/>
+                            <SignUpWithButton company="github" projectLabel="Sign up using Github"/>
+                        </div>
+
+                        <div class="my-12 border-b text-center">
+                            <div
+                                    class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
+                            >
+                                Or sign up with e-mail
+                            </div>
+                        </div>
+
+                        <div class="mx-auto max-w-xs flex flex-col gap-4">
+                            <LoginInputElement placeholder="Email" type="email"/>
+                            <LoginInputElement placeholder="Password" type="password"/>
+                            <SignUpButton/>
+                            <p class="mt-6 text-xs text-gray-600 text-center">
+                                I agree to abide by mine's
+                                <span class="border-b border-gray-500 border-dotted">
+                                    Terms of Service
+                                </span>
+                                and its
+                                <span class="border-b border-gray-500 border-dotted">
+                                    Privacy Policy
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <LoginHeroImage/>
         </div>
     </div>
 </div>

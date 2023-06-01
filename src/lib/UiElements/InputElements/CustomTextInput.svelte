@@ -5,7 +5,7 @@
 
 </script>
 
-<input bind:value={textValue} class="input input-bordered input-primary w-full max-w-xs m-7 text-lg"
+<input bind:value={textValue} class="input input-bordered input-primary w-full max-w-xs m-7 text-lg text-white"
        disabled={disabled}
        placeholder={placeHolder}
        type="text"/>
