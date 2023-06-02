@@ -3,7 +3,7 @@
  */
 
 import {createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
-import {currentUserId, loggedIn} from "../../AppConfig";
+import {ALERT_TYPE, currentUserId, displayAlert, loggedIn} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 
@@ -51,10 +51,7 @@ export function createNewUserByGoogle(): void {
 
     }).catch((error) => {
         // Handle Errors here.
-
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        displayAlert(error.message, ALERT_TYPE.ERROR, 5000);
     });
 }
 
@@ -73,9 +70,6 @@ export function createNewUserByGithub(): void {
 
         }).catch((error) => {
         // Handle Errors here.
-
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        displayAlert(error.message, ALERT_TYPE.ERROR, 5000);
     });
 }
