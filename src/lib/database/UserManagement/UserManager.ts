@@ -4,7 +4,7 @@
 
 import {createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import {currentUserId, loggedIn} from "../../AppConfig";
-import {auth, provider} from "../DatabaseConfig";
+import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 
 /**
@@ -42,7 +42,7 @@ function hasValidSyntax(email: string, password: string): boolean {
  * Creates a new user using Google authentication.
  */
 export function createNewUserByGoogle(): void {
-    signInWithPopup(auth, provider).then((result): void => {
+    signInWithPopup(auth, googleAuthProvider).then((result): void => {
 
         const user = result.user;
 
@@ -50,18 +50,32 @@ export function createNewUserByGoogle(): void {
         loggedIn.set(true);
 
     }).catch((error) => {
-
         // Handle Errors here.
+
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-
     });
 }
 
 /**
- * Creates a new user using Github authentication.
+ * Creates a new user using GitHub authentication.
  */
 export function createNewUserByGithub(): void {
+    signInWithPopup(auth, githubAuthProvider)
+        .then((result) => {
+            const user = result.user;
 
+            currentUserId.set(user.uid);
+            loggedIn.set(true);
+
+            console.log("User ID: " + user.uid)
+
+        }).catch((error) => {
+        // Handle Errors here.
+
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+    });
 }
