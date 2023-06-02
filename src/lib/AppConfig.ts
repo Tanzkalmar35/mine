@@ -1,14 +1,23 @@
 import {writable} from "svelte/store";
 
+// Current user configs
+
 export const currentUserId = writable("");
 
 export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
 
-// User Management
+// Login/Signup process Management
+
 export const loggedIn = writable(false);
 export const registerComplete = writable(false);
 
+// Login page state management
+
+export const loginEmail = writable("");
+export const loginPassword = writable("");
+
 // Alerts
+
 export const ALERT_TYPE = {
     ERROR: "ERROR",
     WARNING: "WARNING",

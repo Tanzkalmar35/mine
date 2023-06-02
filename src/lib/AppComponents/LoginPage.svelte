@@ -1,9 +1,13 @@
-<script lang="ts">
+<script context="module" lang="ts">
     import AppLogo from "../UiElements/Img/AppLogo.svelte";
     import SignUpWithButton from "../UiElements/Buttons/SignUpWithButton.svelte";
     import LoginHeroImage from "../UiElements/Img/LoginHeroImage.svelte";
     import SignUpButton from "../UiElements/Buttons/SignUpButton.svelte";
-    import LoginInputElement from "../UiElements/InputElements/LoginInputElement.svelte";
+    import LoginEmailInputElement from "../UiElements/InputElements/LoginEmailInputElement.svelte";
+    import LoginPasswordInputElement from "../UiElements/InputElements/LoginPasswordInputElement.svelte";
+</script>
+<script>
+    import Alert from "../UiElements/Alerts/Alert.svelte";
 </script>
 
 <div class="flex justify-center text-white">
@@ -33,9 +37,15 @@
                             </div>
                         </div>
 
-                        <div class="mx-auto max-w-xs flex flex-col gap-3">
-                            <LoginInputElement placeholder="Email" type="email"/>
-                            <LoginInputElement placeholder="Password" type="password"/>
+                        <div class="mx-auto max-w-xs">
+                            <div class="flex flex-col gap-4" id="signUpForm">
+                                <LoginEmailInputElement placeholder="Email"/>
+                                <p class="text-red-500 mb-[-.5rem] mt-[-1rem] ml-1 hidden text-sm"
+                                   id="loginEmailErrorText"></p>
+                                <LoginPasswordInputElement placeholder="Password"/>
+                                <p class="text-red-500 mb-[-.5rem] mt-[-1rem] ml-1 hidden text-sm"
+                                   id="loginPasswordErrorText"></p>
+                            </div>
                             <SignUpButton/>
                             <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by mine's
@@ -53,5 +63,6 @@
             </div>
             <LoginHeroImage/>
         </div>
+        <Alert/>
     </div>
 </div>

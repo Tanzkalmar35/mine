@@ -1,7 +1,7 @@
 <script lang="ts">
     import GoogleLogo from "../Img/GoogleLogo.svelte";
     import GithubLogo from "../Img/GithubLogo.svelte";
-    import {createNewUserByGithub, createNewUserByGoogle} from "../../database/DatabaseAccessManager";
+    import {createNewUserByGithub, createNewUserByGoogle} from "../../database/UserManagement/UserManager";
 
     export let projectLabel: string;
     export let company: "google" | "github";

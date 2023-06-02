@@ -4,7 +4,7 @@
     import AddProjectModal from "../UiElements/Modals/AddProjectModal.svelte";
     import {getProjectData} from "../database/DatabaseAccessManager.ts";
     import DashboardNavigation from "../SubComponents/Navigation/DashboardNavigation.svelte";
-    import ErrorAlert from "../UiElements/Alerts/Alert.svelte";
+    import Alert from "../UiElements/Alerts/Alert.svelte";
 
     let projectData = [];
 
@@ -12,14 +12,12 @@
         projectData = await getProjectData();
     });
 
-    let projectNotCreatedError = "Something went wrong while storing your project. Please try again."
-
     //TODO: Only load as many as screen can fit (8) and add a load more button at the bottom that also increases the page's size (App.svelte)
 
 </script>
 
 <div class="flex text-5xl justify-center" id="Dashboard">
-    <ErrorAlert/>
+    <Alert/>
     <div class="absolute z-10">
         <DashboardNavigation/>
     </div>
