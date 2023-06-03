@@ -26,6 +26,7 @@ export function createNewUserByEmail(email: string, password: string): void {
         )
     } else {
         setFormError("Please make sure both fields are filled in properly.", "both");
+        // go on with personalization
     }
 
 }
@@ -35,8 +36,8 @@ export function createNewUserByEmail(email: string, password: string): void {
  * @param email
  * @param password
  */
-export function loginToExistingUser(email: string, password: string) {
-    signInWithEmailAndPassword(auth, email, password).then((result) => {
+export function loginToExistingUser(email: string, password: string): void {
+    signInWithEmailAndPassword(auth, email, password).then((result): void => {
         const user = result.user;
 
         currentUserId.set(user.uid);
@@ -44,7 +45,6 @@ export function loginToExistingUser(email: string, password: string) {
 
     }).catch((error) => {
         handleError(error.code, false, email, password);
-        console.log(error.code)
     });
 }
 

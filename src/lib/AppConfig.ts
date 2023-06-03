@@ -2,14 +2,16 @@ import {writable} from "svelte/store";
 
 // Current user configs
 
+export const currentPage = writable("");
+
 export const currentUserId = writable("");
 
 export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
 
 // Login/Signup process Management
 
-export const loggedIn = writable(false);
-export const registerComplete = writable(false);
+export const loggedIn = writable(true);
+export const registerComplete = writable(true);
 
 // Login page state management
 
