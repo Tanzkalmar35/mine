@@ -45,14 +45,10 @@
                                    id="loginPasswordErrorText"></p>
                             </div>
                             <SignUpButton/>
-                            <p class="mt-6 text-xs text-gray-600 text-center">
+                            <p class="mt-6 text-xs text-gray-600 text-center hidden">
                                 I agree to abide by mine's
                                 <span class="border-b border-gray-500 border-dotted cursor-pointer">
                                     Terms of Service
-                                </span>
-                                and its
-                                <span class="border-b border-gray-500 border-dotted cursor-pointer">
-                                    Privacy Policy
                                 </span>
                             </p>
                         </div>
