@@ -5,8 +5,6 @@
     import SignUpButton from "../UiElements/Buttons/SignUpButton.svelte";
     import LoginEmailInputElement from "../UiElements/InputElements/LoginEmailInputElement.svelte";
     import LoginPasswordInputElement from "../UiElements/InputElements/LoginPasswordInputElement.svelte";
-</script>
-<script>
     import Alert from "../UiElements/Alerts/Alert.svelte";
 </script>
 
@@ -21,19 +19,19 @@
                 </div>
                 <div class="mt-12 flex flex-col items-center">
                     <h1 class="text-2xl xl:text-3xl font-extrabold">
-                        Sign up for mine
+                        Sign up or login for mine
                     </h1>
                     <div class="w-full flex-1 mt-8">
                         <div class="flex flex-col items-center gap-4">
-                            <SignUpWithButton company="google" projectLabel="Sign up using Google"/>
-                            <SignUpWithButton company="github" projectLabel="Sign up using Github"/>
+                            <SignUpWithButton company="google" projectLabel="Sign up or login using Google"/>
+                            <SignUpWithButton company="github" projectLabel="Sign up or login using Github"/>
                         </div>
 
                         <div class="my-12 border-b text-center">
                             <div
                                     class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2"
                             >
-                                Or sign up with e-mail
+                                Or sign up / login with e-mail
                             </div>
                         </div>
 
@@ -49,11 +47,11 @@
                             <SignUpButton/>
                             <p class="mt-6 text-xs text-gray-600 text-center">
                                 I agree to abide by mine's
-                                <span class="border-b border-gray-500 border-dotted">
+                                <span class="border-b border-gray-500 border-dotted cursor-pointer">
                                     Terms of Service
                                 </span>
                                 and its
-                                <span class="border-b border-gray-500 border-dotted">
+                                <span class="border-b border-gray-500 border-dotted cursor-pointer">
                                     Privacy Policy
                                 </span>
                             </p>

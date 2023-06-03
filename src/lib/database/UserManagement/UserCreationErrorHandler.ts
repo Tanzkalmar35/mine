@@ -1,4 +1,5 @@
 import {ALERT_TYPE, displayAlert} from "../../AppConfig";
+import {loginToExistingUser} from "./UserManager";
 
 let errorElement: HTMLElement;
 let errorTextElement: HTMLElement;
@@ -6,18 +7,29 @@ let errorTextElement: HTMLElement;
 /**
  * Handles errors that occur when creating a user.
  * @param errorCode
+ * @param login
+ * @param email
+ * @param password
  */
 
-export function handleError(errorCode: string): void {
+export function handleError(errorCode: string, login: boolean, email: string, password: string): void {
+    console.log(errorCode)
     switch (errorCode) {
         case "auth/invalid-email":
             setFormError("Invalid email address", "email")
             break;
         case "auth/email-already-in-use":
-            setFormError("This email is already in use.", "email");
+            !login ? setFormError("This email is already in use.", "email") : "";
+            loginToExistingUser(email, password);
+            break;
+        case "auth/wrong-password":
+            setFormError("The password for the existing account is wrong", "password");
             break;
         case "auth/invalid-password":
             setFormError("Invalid password", "password");
+            break;
+        case "auth/weak-password":
+            setFormError("Password must be at least 6 characters long.", "password");
             break;
         case "auth/internal-error":
             displayAlert("An internal error occurred. Please try again later.", ALERT_TYPE.ERROR, 5000);

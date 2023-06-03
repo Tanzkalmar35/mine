@@ -2,7 +2,7 @@
  * Manages all database operations related to user management.
  */
 
-import {createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import {ALERT_TYPE, currentUserId, displayAlert, loggedIn} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
@@ -21,12 +21,31 @@ export function createNewUserByEmail(email: string, password: string): void {
             loggedIn.set(true);
 
         }).catch((error) => {
-                handleError(error.code)
+                handleError(error.code, true, email, password);
             }
         )
     } else {
         setFormError("Please make sure both fields are filled in properly.", "both");
     }
+
+}
+
+/**
+ * Logs in an existing user using email and password.
+ * @param email
+ * @param password
+ */
+export function loginToExistingUser(email: string, password: string) {
+    signInWithEmailAndPassword(auth, email, password).then((result) => {
+        const user = result.user;
+
+        currentUserId.set(user.uid);
+        loggedIn.set(true);
+
+    }).catch((error) => {
+        handleError(error.code, false, email, password);
+        console.log(error.code)
+    });
 }
 
 /**
