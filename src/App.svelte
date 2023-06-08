@@ -6,8 +6,7 @@
     import {currentPage, loggedIn, registerComplete} from "./lib/AppConfig";
     import PersonalizationProcessPage from "./lib/AppComponents/PersonalizationProcessPage.svelte";
 
-    $: currentPage;
-    {
+    $: {
         if (!$loggedIn) currentPage.set("login");
         if (!$registerComplete && $loggedIn) currentPage.set("personalization");
         if ($registerComplete && $loggedIn) currentPage.set("home");

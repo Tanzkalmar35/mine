@@ -10,7 +10,7 @@ export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
 
 // Login/Signup process Management
 
-export const loggedIn = writable(true);
+export const loggedIn = writable(false);
 export const registerComplete = writable(true);
 
 // Login page state management

@@ -20,7 +20,7 @@ export function createNewUserByEmail(email: string, password: string): void {
             currentUserId.set(user.uid);
             loggedIn.set(true);
 
-        }).catch((error) => {
+        }).catch((error): void => {
                 handleError(error.code, true, email, password);
             }
         )
@@ -43,7 +43,7 @@ export function loginToExistingUser(email: string, password: string): void {
         currentUserId.set(user.uid);
         loggedIn.set(true);
 
-    }).catch((error) => {
+    }).catch((error): void => {
         handleError(error.code, false, email, password);
     });
 }
@@ -68,7 +68,7 @@ export function createNewUserByGoogle(): void {
         currentUserId.set(user.uid);
         loggedIn.set(true);
 
-    }).catch((error) => {
+    }).catch((error): void => {
         // Handle Errors here.
         displayAlert(error.message, ALERT_TYPE.ERROR, 5000);
     });
