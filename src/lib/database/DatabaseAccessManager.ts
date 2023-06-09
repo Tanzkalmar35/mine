@@ -50,9 +50,10 @@ export function storeProject(name: string, description: string, path: string): v
  * Returns all project's childs stored in the database.
  */
 export function getProjectData(): Promise<Array<{ name: string, description: string, path: string }>> {
-    return new Promise((resolve) => {
 
-        const projectData: Array<any> = [];
+    const projectData: Array<any> = [];
+
+    return new Promise((resolve): void => {
 
         onValue(ref(database, "Users/" + get(currentUserId) + "/Projects/"), (snapshot): void => {
 

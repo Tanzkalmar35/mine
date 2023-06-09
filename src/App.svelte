@@ -2,14 +2,12 @@
     import Dashboard from "./lib/AppComponents/Dashboard.svelte";
     import Settings from "./lib/AppComponents/Settings.svelte";
     import HomePage from "./lib/AppComponents/HomePage.svelte";
-    import LoginPage from "./lib/AppComponents/LoginPage.svelte";
-    import {currentPage, loggedIn, registerComplete} from "./lib/AppConfig";
-    import PersonalizationProcessPage from "./lib/AppComponents/PersonalizationProcessPage.svelte";
+    import LoginPage from "./lib/AppComponents/Login/LoginPage.svelte";
+    import {currentPage, loggedIn} from "./lib/AppConfig";
 
     $: {
         if (!$loggedIn) currentPage.set("login");
-        if (!$registerComplete && $loggedIn) currentPage.set("personalization");
-        if ($registerComplete && $loggedIn) currentPage.set("home");
+        else currentPage.set("home");
     }
 </script>
 
@@ -17,9 +15,6 @@
     <div class="w-full h-full absolute z-1" id="content">
         {#if $currentPage === "login"}
             <LoginPage/>
-        {/if}
-        {#if $currentPage === "personalization"}
-            <PersonalizationProcessPage/>
         {/if}
         {#if $currentPage === "home"}
             <HomePage/>

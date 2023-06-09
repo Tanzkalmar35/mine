@@ -3,7 +3,15 @@
  */
 
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
-import {ALERT_TYPE, currentUserId, displayAlert, loggedIn} from "../../AppConfig";
+import {
+    ALERT_TYPE,
+    currentUserId,
+    defaultEditor,
+    displayAlert,
+    loggedIn,
+    registrationStatus,
+    username
+} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 
@@ -18,7 +26,7 @@ export function createNewUserByEmail(email: string, password: string): void {
             const user = result.user;
 
             currentUserId.set(user.uid);
-            loggedIn.set(true);
+            registrationStatus.set(2);
 
         }).catch((error): void => {
                 handleError(error.code, true, email, password);
@@ -50,11 +58,17 @@ export function loginToExistingUser(email: string, password: string): void {
 
 /**
  * Checks if the email and password have a valid syntax.
- * @param email
- * @param password
+ * @param args the arguments that should be checked.
+ * @returns true if the syntax is valid, false otherwise.
  */
-function hasValidSyntax(email: string, password: string): boolean {
-    return !!(email && password);
+function hasValidSyntax(...args: string[]): boolean {
+    let isValid: boolean = true;
+    args.forEach((arg: string): void => {
+        if (!arg) {
+            isValid = false;
+        }
+    })
+    return isValid;
 }
 
 /**
@@ -66,7 +80,7 @@ export function createNewUserByGoogle(): void {
         const user = result.user;
 
         currentUserId.set(user.uid);
-        loggedIn.set(true);
+        registrationStatus.set(2);
 
     }).catch((error): void => {
         // Handle Errors here.
@@ -79,16 +93,34 @@ export function createNewUserByGoogle(): void {
  */
 export function createNewUserByGithub(): void {
     signInWithPopup(auth, githubAuthProvider)
-        .then((result) => {
+        .then((result): void => {
             const user = result.user;
 
             currentUserId.set(user.uid);
-            loggedIn.set(true);
+            registrationStatus.set(2);
 
             console.log("User ID: " + user.uid)
 
-        }).catch((error) => {
+        }).catch((error): void => {
         // Handle Errors here.
         displayAlert(error.message, ALERT_TYPE.ERROR, 5000);
     });
+}
+
+/**
+ * Personalizes the user's account.
+ *
+ * @param user the user's name.
+ * @param role the user's role / job title.
+ * @param editor the user's preferred editor.
+ */
+export function personalizeUserAccount(user: string, role: string, editor: string): void {
+    if (!hasValidSyntax(user)) return;
+
+    // send to db
+
+    username.set(user);
+    defaultEditor.set(editor);
+    registrationStatus.set(3);
+    loggedIn.set(true);
 }

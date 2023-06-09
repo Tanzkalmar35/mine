@@ -6,17 +6,23 @@ export const currentPage = writable("");
 
 export const currentUserId = writable("");
 
-export const defaultEditor = writable("IntellIJ"); //TODO: Ask on log in
-
 // Login/Signup process Management
 
 export const loggedIn = writable(false);
-export const registerComplete = writable(true);
+
+export const registrationStatus = writable(1);
 
 // Login page state management
 
 export const loginEmail = writable("");
+
 export const loginPassword = writable("");
+
+export const username = writable("");
+
+export const userRole = writable("");
+
+export const defaultEditor = writable("");
 
 // Alerts
 
