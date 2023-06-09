@@ -34,7 +34,7 @@ function writeIntoDatabase(path: string, values: Project) {
     });
 }
 
-/*
+/**
  * Stores a new project in the database.
  */
 export function storeProject(name: string, description: string, path: string): void {
@@ -54,10 +54,11 @@ export function getProjectData(): Promise<Array<{ name: string, description: str
 
         const projectData: Array<any> = [];
 
-        onValue(ref(database, "Users/Projects/"), (snapshot) => {
+        onValue(ref(database, "Users/" + get(currentUserId) + "/Projects/"), (snapshot): void => {
 
             const data = snapshot.val();
             const objectsArray: Array<any> = Object.values(data);
+
             const projects = objectsArray.map(({description, name, path}) => ({
                 name: name,
                 description: description,
