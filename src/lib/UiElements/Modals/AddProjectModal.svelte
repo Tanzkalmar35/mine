@@ -1,7 +1,7 @@
 <script lang="ts">
-    import CustomTextFieldElement from "../InputElements/CustomTextFieldElement.svelte";
+    import CustomTextFieldElement from "../InputElements/DarkMode/DarkModeTextField.svelte";
 
-    import CustomTextInput from "../InputElements/CustomTextInput.svelte";
+    import CustomTextInput from "../InputElements/DarkMode/DarkModeTextInput.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
     import ChooseFolderButton from "../Buttons/ChooseFolderButton.svelte";
 

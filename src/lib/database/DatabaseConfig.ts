@@ -18,6 +18,6 @@ const app = initializeApp(firebaseConfig);
 
 export const database = getDatabase(app);
 export const auth = getAuth(app)
-export const googleAuthProvider = new GoogleAuthProvider();
+export const googleAuthProvider: GoogleAuthProvider = new GoogleAuthProvider();
 
-export const githubAuthProvider = new GithubAuthProvider();
+export const githubAuthProvider: GithubAuthProvider = new GithubAuthProvider();

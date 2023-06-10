@@ -1,7 +1,7 @@
 <script lang="ts">
-    import LoginEmailInputElement from "../../UiElements/InputElements/LoginEmailInputElement.svelte";
+    import LoginEmailInputElement from "../../UiElements/InputElements/LightMode/LightModeEmailElement.svelte";
     import SignUpWithButton from "../../UiElements/Buttons/SignUpWithButton.svelte";
-    import LoginPasswordInputElement from "../../UiElements/InputElements/LoginPasswordInputElement.svelte";
+    import LoginPasswordInputElement from "../../UiElements/InputElements/LightMode/LightModePasswordInput.svelte";
     import AppLogo from "../../UiElements/Img/AppLogo.svelte";
     import SignUpButton from "../../UiElements/Buttons/SignUpButton.svelte";
 </script>

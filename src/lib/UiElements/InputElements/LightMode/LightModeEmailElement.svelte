@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {loginEmail} from "../../AppConfig";
+    import {loginEmail} from "../../../AppConfig";
 
     export let placeholder: string;
     let textValue: string = "";
