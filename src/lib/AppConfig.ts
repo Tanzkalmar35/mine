@@ -2,8 +2,8 @@ import {readable, writable} from "svelte/store";
 
 // Static configs
 
-export const featuredEditors = readable(["intellij", "vscode"])
-export const featuredRoles = readable(["developer", "tester", "manager", "student"])
+export const featuredEditors = readable(["IntellIJ Idea Ultimate Edition", "Visual Studio Code"])
+export const featuredRoles = readable(["Developer", "Tester", "Manager"])
 
 // Current user configs
 

@@ -1,9 +1,8 @@
 <script lang="ts">
-    import CustomTextFieldElement from "../InputElements/DarkMode/DarkModeTextField.svelte";
-
-    import CustomTextInput from "../InputElements/DarkMode/DarkModeTextInput.svelte";
+    import DarkModeTextField from "../InputElements/DarkMode/DarkModeTextField.svelte";
+    import DarkModeTextInput from "../InputElements/DarkMode/DarkModeTextInput.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
-    import ChooseFolderButton from "../Buttons/ChooseFolderButton.svelte";
+    import ChooseFolderButton from "../Buttons/OpenFileExplorerButton.svelte";
 
     let disabled = true;
 
@@ -30,11 +29,11 @@
     <div class="modal-box w-11/12 max-w-5xl text-white">
         <h3 class="font-bold text-lg mb-7">Add a project</h3>
         <div class="flex flex-col">
-            <CustomTextInput bind:textValue={projectTitle} placeHolder="Project Name"/>
-            <CustomTextFieldElement bind:textValue={projectDescription} placeHolder="Project Description"/>
+            <DarkModeTextInput bind:textValue={projectTitle} placeHolder="Project Name"/>
+            <DarkModeTextField bind:textValue={projectDescription} placeHolder="Project Description"/>
             <div class="flex items-center">
-                <ChooseFolderButton bind:currentFolderPath={projectPath}/>
-                <CustomTextInput bind:disabled={disabled} textValue={projectPath}/>
+                <ChooseFolderButton bind:currentFolderPath={projectPath} type="Folder"/>
+                <DarkModeTextInput bind:disabled={disabled} textValue={projectPath}/>
             </div>
         </div>
         <div class="modal-action">
