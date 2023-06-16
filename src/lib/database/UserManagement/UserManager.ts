@@ -3,15 +3,7 @@
  */
 
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
-import {
-    ALERT_TYPE,
-    currentUserId,
-    defaultEditor,
-    displayAlert,
-    loggedIn,
-    registrationStatus,
-    username
-} from "../../AppConfig";
+import {ALERT_TYPE, currentUserId, defaultEditor, displayAlert, loggedIn, username} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 
@@ -26,7 +18,7 @@ export function createNewUserByEmail(email: string, password: string): void {
             const user = result.user;
 
             currentUserId.set(user.uid);
-            registrationStatus.set(2);
+            window.location.pathname = "/registration?Step=2";
 
         }).catch((error): void => {
                 handleError(error.code, true, email, password);
@@ -34,7 +26,6 @@ export function createNewUserByEmail(email: string, password: string): void {
         )
     } else {
         setFormError("Please make sure both fields are filled in properly.", "both");
-        // go on with personalization
     }
 
 }
@@ -80,7 +71,7 @@ export function createNewUserByGoogle(): void {
         const user = result.user;
 
         currentUserId.set(user.uid);
-        registrationStatus.set(2);
+        window.location.pathname = "/registration?Step=2";
 
     }).catch((error): void => {
         // Handle Errors here.
@@ -97,9 +88,7 @@ export function createNewUserByGithub(): void {
             const user = result.user;
 
             currentUserId.set(user.uid);
-            registrationStatus.set(2);
-
-            console.log("User ID: " + user.uid)
+            window.location.pathname = "/registration?Step=2";
 
         }).catch((error): void => {
         // Handle Errors here.
@@ -121,6 +110,5 @@ export function personalizeUserAccount(user: string, role: string, editor: strin
 
     username.set(user);
     defaultEditor.set(editor);
-    registrationStatus.set(3);
     loggedIn.set(true);
 }

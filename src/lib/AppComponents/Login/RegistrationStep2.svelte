@@ -37,9 +37,11 @@
                                               placeholder="What code editor do you use?"/>
                     <p class="text-red-500 mb-[-.5rem] mt-[-2rem] ml-1 text-sm hidden"
                        id="userEditorsErrorText">Couldn't find the path to this editor.</p>
-                    <div class="hidden">
+                    <div class="">
                         <OpenFileExplorerButton bind:currentFolderPath={projectPath} type="File"/>
-                        <LightModeTextInput bind:disabled={disabled} description="Path" textValue={projectPath}/>
+                        <LightModeTextInput description="Path" disabled={disabled}
+                                            on:click={() => console.log(projectPath)}
+                                            textValue={projectPath}/>
                     </div>
                     <LightModeDropdownElement description="What is your Role?" id="userRole"
                                               options={get(featuredRoles)} placeholder="What is your role?"/>

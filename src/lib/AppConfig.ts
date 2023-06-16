@@ -7,15 +7,13 @@ export const featuredRoles = readable(["Developer", "Tester", "Manager"])
 
 // Current user configs
 
-export const currentPage = writable("");
-
 export const currentUserId = writable("");
 
 // Login/Signup process Management
 
 export const loggedIn = writable(false);
 
-export const registrationStatus = writable(1);
+export const registrationComplete = writable(false);
 
 // Login page state management
 

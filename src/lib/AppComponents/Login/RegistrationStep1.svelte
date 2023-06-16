@@ -37,7 +37,7 @@
                     <p class="text-red-500 mb-[-.5rem] mt-[-1rem] ml-1 hidden text-sm"
                        id="loginPasswordErrorText"></p>
                 </div>
-                <SignUpButton/>
+                <SignUpButton url="/registration?Step=2"/>
                 <p class="mt-6 text-xs text-gray-600 text-center hidden">
                     I agree to abide by mine's
                     <span class="border-b border-gray-500 border-dotted cursor-pointer">

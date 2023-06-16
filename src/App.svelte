@@ -3,26 +3,22 @@
     import Settings from "./lib/AppComponents/Settings.svelte";
     import HomePage from "./lib/AppComponents/HomePage.svelte";
     import LoginPage from "./lib/AppComponents/Login/LoginPage.svelte";
-    import {currentPage, loggedIn} from "./lib/AppConfig";
 
-    $: {
-        if (!$loggedIn) currentPage.set("login");
-        else currentPage.set("home");
-    }
+    let currentUrl: string = window.location.pathname;
 </script>
 
 <main class="w-screen h-screen flex justify-center text-black bg-accent">
     <div class="w-full h-full absolute z-1" id="content">
-        {#if $currentPage === "login"}
+        {#if currentUrl === "/registration"}
             <LoginPage/>
         {/if}
-        {#if $currentPage === "home"}
+        {#if currentUrl === "/"}
             <HomePage/>
         {/if}
-        {#if $currentPage === "dashboard"}
+        {#if currentUrl === "/Dashboard"}
             <Dashboard/>
         {/if}
-        {#if $currentPage === "settings"}
+        {#if currentUrl === "/Settings"}
             <Settings/>
         {/if}
     </div>

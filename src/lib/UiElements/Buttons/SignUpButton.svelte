@@ -1,12 +1,12 @@
 <script lang="ts">
     import {createNewUserByEmail, personalizeUserAccount} from "../../database/UserManagement/UserManager";
     import {get} from "svelte/store";
-    import {loginEmail, loginPassword, registrationStatus, username, userRole} from "../../AppConfig";
+    import {loginEmail, loginPassword, username, userRole} from "../../AppConfig";
     import {defaultEditor} from "../../AppConfig.js";
 
     function handleClick() {
-        if (get(registrationStatus) === 1) createNewUserByEmail(get(loginEmail), get(loginPassword))
-        else if (get(registrationStatus) === 2) personalizeUserAccount(get(username), get(userRole), get(defaultEditor))
+        if (window.location.pathname === "registration?Step=1") createNewUserByEmail(get(loginEmail), get(loginPassword))
+        else if (window.location.pathname === "registration?Step=2") personalizeUserAccount(get(username), get(userRole), get(defaultEditor))
     }
 
 </script>
@@ -14,7 +14,7 @@
 <button
         class="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700
             transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-        on:click={() => handleClick()}
+        on:click={handleClick}
 >
     <svg
             class="w-6 h-6 -ml-2"
