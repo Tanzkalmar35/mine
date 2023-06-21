@@ -1,8 +1,8 @@
 <script lang="ts">
-    import DarkModeTextField from "../InputElements/DarkMode/DarkModeTextField.svelte";
-    import DarkModeTextInput from "../InputElements/DarkMode/DarkModeTextInput.svelte";
+    import DarkModeTextField from "../inputelements/darkmode/DarkModeTextField.svelte";
+    import DarkModeTextInput from "../inputelements/darkmode/DarkModeTextInput.svelte";
     import {storeProject} from "../../database/DatabaseAccessManager.ts";
-    import ChooseFolderButton from "../Buttons/OpenFileExplorerButton.svelte";
+    import ChooseFolderButton from "../buttons/OpenFileExplorerButton.svelte";
 
     let disabled = true;
 

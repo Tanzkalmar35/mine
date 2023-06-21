@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {openFolderInEditor} from "../OsOperations/OpenApplication";
+    import {openFolderInEditor} from "../osoperations/OpenApplication";
     import {defaultEditor} from "../AppConfig";
 
     export let projectTitle: string;

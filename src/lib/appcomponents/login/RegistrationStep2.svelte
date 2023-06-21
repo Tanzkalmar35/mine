@@ -1,13 +1,13 @@
 <script lang="ts">
 
-    import AppLogo from "../../UiElements/Img/AppLogo.svelte";
-    import SignUpButton from "../../UiElements/Buttons/SignUpButton.svelte";
-    import LoginInputElement from "../../UiElements/InputElements/LightMode/LightModeTextInput.svelte";
-    import LightModeTextInput from "../../UiElements/InputElements/LightMode/LightModeTextInput.svelte";
-    import LightModeDropdownElement from "../../UiElements/InputElements/LightMode/LightModeDropdownElement.svelte";
+    import AppLogo from "../../uielements/img/AppLogo.svelte";
+    import SignUpButton from "../../uielements/buttons/SignUpButton.svelte";
+    import LoginInputElement from "../../uielements/inputelements/lightmode/LightModeTextInput.svelte";
+    import LightModeTextInput from "../../uielements/inputelements/lightmode/LightModeTextInput.svelte";
+    import LightModeDropdownElement from "../../uielements/inputelements/lightmode/LightModeDropdownElement.svelte";
     import {featuredEditors, featuredRoles} from "../../AppConfig";
     import {get} from "svelte/store";
-    import OpenFileExplorerButton from "../../UiElements/Buttons/OpenFileExplorerButton.svelte";
+    import OpenFileExplorerButton from "../../uielements/buttons/OpenFileExplorerButton.svelte";
 
     let disabled: boolean = true;
     let projectPath: string = "";

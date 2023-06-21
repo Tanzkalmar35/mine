@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Dashboard from "./lib/AppComponents/Dashboard.svelte";
-    import Settings from "./lib/AppComponents/Settings.svelte";
-    import HomePage from "./lib/AppComponents/HomePage.svelte";
-    import LoginPage from "./lib/AppComponents/Login/LoginPage.svelte";
+    import Dashboard from "./lib/appcomponents/Dashboard.svelte";
+    import Settings from "./lib/appcomponents/Settings.svelte";
+    import HomePage from "./lib/appcomponents/HomePage.svelte";
+    import LoginPage from "./lib/appcomponents/login/LoginPage.svelte";
 
     let currentUrl: string = window.location.pathname;
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import AppLogo from "../UiElements/Img/AppLogo.svelte";
-    import HomePageNavbar from "../SubComponents/Navigation/HomePageNavbar.svelte";
+    import AppLogo from "../uielements/img/AppLogo.svelte";
+    import HomePageNavbar from "../subcomponents/navigation/HomePageNavbar.svelte";
 </script>
 
 <div id="home">

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {createNewUserByEmail, personalizeUserAccount} from "../../database/UserManagement/UserManager";
+    import {createNewUserByEmail, personalizeUserAccount} from "../../database/usermanagement/UserManager";
     import {get} from "svelte/store";
     import {loginEmail, loginPassword, username, userRole} from "../../AppConfig";
     import {defaultEditor} from "../../AppConfig.js";

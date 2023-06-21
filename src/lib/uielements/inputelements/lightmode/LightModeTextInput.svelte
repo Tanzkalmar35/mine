@@ -6,7 +6,7 @@
     let textValue: string = "";
 </script>
 
-<divy>
+<div>
     <label class="mb-2 text-sm font-bold text-gray-700" for="loginEmailInput">
         {description}
     </label>
@@ -19,4 +19,4 @@
             placeholder={placeholder}
             type="text"
     />
-</divy>
+</div>
