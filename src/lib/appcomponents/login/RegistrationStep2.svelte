@@ -8,9 +8,20 @@
     import {featuredEditors, featuredRoles} from "../../AppConfig";
     import {get} from "svelte/store";
     import OpenFileExplorerButton from "../../uielements/buttons/OpenFileExplorerButton.svelte";
+    import {checkEditorPath} from "../../osoperations/OpenApplication";
 
     let disabled: boolean = true;
     let projectPath: string = "";
+    let currentEditorOption: string = "";
+    let chooseFileDiv;
+
+    function checkEditorPathAvailable(editor: string) {
+        if (!checkEditorPath(editor)) {
+            chooseFileDiv.classList.remove("hidden");
+        } else {
+            console.log("Editor path is available");
+        }
+    }
 
 </script>
 
@@ -27,20 +38,20 @@
             Please answer these few questions to get started.
         </h2>
         <div class="w-full flex-1 mt-8">
-
-
             <div class="mx-auto max-w-xs">
                 <div class="flex flex-col gap-4">
                     <LoginInputElement description="What is you name?" placeholder="Your name"/>
-                    <LightModeDropdownElement description="What code editor do you use?" id="userEditor"
+                    <LightModeDropdownElement bind:value={currentEditorOption}
+                                              description="What code editor do you use?"
+                                              id="userEditor"
+                                              on:change={() => checkEditorPathAvailable(currentEditorOption)}
                                               options={get(featuredEditors)}
                                               placeholder="What code editor do you use?"/>
                     <p class="text-red-500 mb-[-.5rem] mt-[-2rem] ml-1 text-sm hidden"
                        id="userEditorsErrorText">Couldn't find the path to this editor.</p>
-                    <div class="">
+                    <div bind:this={chooseFileDiv} class="hidden">
                         <OpenFileExplorerButton bind:currentFolderPath={projectPath} type="File"/>
-                        <LightModeTextInput description="Path" disabled={disabled}
-                                            on:click={() => console.log(projectPath)}
+                        <LightModeTextInput description="Editor Path" disabled={disabled}
                                             textValue={projectPath}/>
                     </div>
                     <LightModeDropdownElement description="What is your Role?" id="userRole"

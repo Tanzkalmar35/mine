@@ -11,3 +11,11 @@ export async function openFolderInEditor(folderPath): Promise<void> {
         console.error('Error while calling open_editor_with_folder:', error);
     }
 }
+
+export function checkEditorPath(editor: string): boolean {
+    if (editor === "IntellIJ Idea Ultimate Edition") {
+        return !!get(intellijUltimatePath);
+    } else if (editor === "Visual Studio Code") {
+        return !!process.env.vscode;
+    }
+}

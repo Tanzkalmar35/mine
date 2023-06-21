@@ -4,11 +4,12 @@
     import HomePage from "./lib/appcomponents/HomePage.svelte";
     import LoginPage from "./lib/appcomponents/login/LoginPage.svelte";
     import {onMount} from "svelte";
+    import {setup} from "./lib/osoperations/Setup";
 
     let currentUrl: string = window.location.pathname;
 
     onMount(function () {
-        //setup();
+        setup();
     });
 
 </script>
