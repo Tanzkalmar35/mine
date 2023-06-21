@@ -4,11 +4,10 @@
 
 // Internal imports
 import {database} from "./DatabaseConfig";
-import {ALERT_TYPE, currentUserId, displayAlert} from "../AppConfig";
+import {ALERT_TYPE, displayAlert} from "../AppConfig";
 
 // Firebase imports
 import {onValue, push, ref, set} from "firebase/database";
-import {get} from "svelte/store";
 
 /*
  * Type definitions
@@ -43,7 +42,7 @@ export function storeProject(name: string, description: string, path: string): v
         description,
         path
     }
-    writeIntoDatabase("Users/" + get(currentUserId) + "/Projects/", values)
+    writeIntoDatabase("Users/" + localStorage.getItem("userId") + "/Projects/", values)
 }
 
 /**
@@ -55,7 +54,7 @@ export function getProjectData(): Promise<Array<{ name: string, description: str
 
     return new Promise((resolve): void => {
 
-        onValue(ref(database, "Users/" + get(currentUserId) + "/Projects/"), (snapshot): void => {
+        onValue(ref(database, "Users/" + localStorage.getItem("userId") + "/Projects/"), (snapshot): void => {
 
             const data = snapshot.val();
             const objectsArray: Array<any> = Object.values(data);

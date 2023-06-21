@@ -1,12 +1,13 @@
 <script lang="ts">
     import {createNewUserByEmail, personalizeUserAccount} from "../../database/usermanagement/UserManager";
-    import {get} from "svelte/store";
-    import {loginEmail, loginPassword, username, userRole} from "../../AppConfig";
-    import {defaultEditor} from "../../AppConfig.js";
 
     function handleClick() {
-        if (window.location.pathname === "registration?Step=1") createNewUserByEmail(get(loginEmail), get(loginPassword))
-        else if (window.location.pathname === "registration?Step=2") personalizeUserAccount(get(username), get(userRole), get(defaultEditor))
+        if (window.location.pathname === "registration?Step=1") {
+            createNewUserByEmail(localStorage.getItem("loginEmail"), localStorage.getItem("loginPassword"))
+        } else if (window.location.pathname === "registration?Step=2") {
+            personalizeUserAccount(localStorage.getItem("username"),
+                localStorage.getItem("userRole"), localStorage.getItem("defaultEditor"))
+        }
     }
 
 </script>

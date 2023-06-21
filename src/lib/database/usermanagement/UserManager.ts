@@ -3,7 +3,7 @@
  */
 
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
-import {ALERT_TYPE, currentUserId, defaultEditor, displayAlert, loggedIn, username} from "../../AppConfig";
+import {ALERT_TYPE, displayAlert} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 
@@ -17,8 +17,9 @@ export function createNewUserByEmail(email: string, password: string): void {
         createUserWithEmailAndPassword(auth, email, password).then((result) => {
             const user = result.user;
 
-            currentUserId.set(user.uid);
-            window.location.pathname = "/registration?Step=2";
+            localStorage.setItem("userId", user.uid);
+            localStorage.setItem("registration1Complete", "true");
+            window.location = location;
 
         }).catch((error): void => {
                 handleError(error.code, true, email, password);
@@ -39,28 +40,15 @@ export function loginToExistingUser(email: string, password: string): void {
     signInWithEmailAndPassword(auth, email, password).then((result): void => {
         const user = result.user;
 
-        currentUserId.set(user.uid);
-        loggedIn.set(true);
+        localStorage.setItem("userId", user.uid);
+        localStorage.setItem("registration1Complete", "true");
+        window.location = location;
 
     }).catch((error): void => {
         handleError(error.code, false, email, password);
     });
 }
 
-/**
- * Checks if the email and password have a valid syntax.
- * @param args the arguments that should be checked.
- * @returns true if the syntax is valid, false otherwise.
- */
-function hasValidSyntax(...args: string[]): boolean {
-    let isValid: boolean = true;
-    args.forEach((arg: string): void => {
-        if (!arg) {
-            isValid = false;
-        }
-    })
-    return isValid;
-}
 
 /**
  * Creates a new user using Google authentication.
@@ -70,8 +58,9 @@ export function createNewUserByGoogle(): void {
 
         const user = result.user;
 
-        currentUserId.set(user.uid);
-        window.location.pathname = "/registration?Step=2";
+        localStorage.setItem("userId", user.uid);
+        localStorage.setItem("registration1Complete", "true");
+        window.location = location;
 
     }).catch((error): void => {
         // Handle Errors here.
@@ -87,8 +76,9 @@ export function createNewUserByGithub(): void {
         .then((result): void => {
             const user = result.user;
 
-            currentUserId.set(user.uid);
-            window.location.pathname = "/registration?Step=2";
+            localStorage.setItem("userId", user.uid);
+            localStorage.setItem("registration1Complete", "true");
+            window.location = location;
 
         }).catch((error): void => {
         // Handle Errors here.
@@ -106,9 +96,22 @@ export function createNewUserByGithub(): void {
 export function personalizeUserAccount(user: string, role: string, editor: string): void {
     if (!hasValidSyntax(user)) return;
 
-    // send to db
+    localStorage.setItem("username", user);
+    localStorage.setItem("defaultEditor", editor);
+    localStorage.setItem("loggedIn", "true");
+}
 
-    username.set(user);
-    defaultEditor.set(editor);
-    loggedIn.set(true);
+/**
+ * Checks if the email and password have a valid syntax.
+ * @param args the arguments that should be checked.
+ * @returns true if the syntax is valid, false otherwise.
+ */
+function hasValidSyntax(...args: string[]): boolean {
+    let isValid: boolean = true;
+    args.forEach((arg: string): void => {
+        if (!arg) {
+            isValid = false;
+        }
+    })
+    return isValid;
 }

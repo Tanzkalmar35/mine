@@ -1,6 +1,14 @@
 <script lang="ts">
     import AppLogo from "../uielements/img/AppLogo.svelte";
     import HomePageNavbar from "../subcomponents/navigation/HomePageNavbar.svelte";
+    import {onMount} from "svelte";
+
+    onMount(function () {
+        if (localStorage.getItem("loggedIn") === "false") {
+            window.location.href = "/registration";
+        }
+    })
+
 </script>
 
 <div id="home">
