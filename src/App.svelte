@@ -8,8 +8,18 @@
 
     let currentUrl: string = window.location.pathname;
 
-    onMount(function () {
-        if (localStorage.getItem("setupCompleted") !== "true") setup()
+    onMount(async () => {
+        if (localStorage.getItem("setupCompleted") === "true") setup()
+
+        async function fetchGithubStats(username) {
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            const data = await response.json();
+            // Display the user's GitHub stats, e.g., total commits.
+            console.log(data);
+        }
+
+        // Call the function with a sample username
+        await fetchGithubStats('Tanzkalmar35');
     });
 
 </script>

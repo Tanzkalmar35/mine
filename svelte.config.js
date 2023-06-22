@@ -9,6 +9,11 @@ const config = {
             fallback: null,
         }),
         ssr: false,
+        vite: {
+            define: {
+                global: {}
+            }
+        },
     },
 };
 

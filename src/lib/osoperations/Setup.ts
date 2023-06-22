@@ -4,8 +4,8 @@
 export function setup(): void {
     localStorage.setItem("userId", "");
 
-    localStorage.setItem("registration1Complete", "false");
-    localStorage.setItem("loggedIn", "false");
+    localStorage.setItem("registration1Complete", "true");
+    localStorage.setItem("loggedIn", "true");
 
     localStorage.setItem("loginEmail", "");
     localStorage.setItem("loginPassword", "");
