@@ -9,7 +9,7 @@
     let currentUrl: string = window.location.pathname;
 
     onMount(function () {
-        setup();
+        if (localStorage.getItem("setupCompleted") !== "true") setup()
     });
 
 </script>
