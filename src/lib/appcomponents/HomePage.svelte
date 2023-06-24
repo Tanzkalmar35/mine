@@ -2,6 +2,9 @@
     import AppLogo from "../uielements/img/AppLogo.svelte";
     import HomePageNavbar from "../subcomponents/navigation/HomePageNavbar.svelte";
     import {onMount} from "svelte";
+    import GitHubStatCard from "../uielements/cards/GitHubStatCard.svelte";
+    import InvisibleCard from "../uielements/cards/InvisibleCard.svelte";
+    import PlaceholderCard from "../uielements/cards/PlaceholderCard.svelte";
 
     onMount(function () {
         if (localStorage.getItem("loggedIn") === "false") {
@@ -26,24 +29,29 @@
     </div>
     <div class="h-[56vh] mt-5 mx-[.5vw] flex-grow-[1] text-white">
         <div class="flex gap-5">
-            <div class="w-[calc(100vw/4)] h-[calc(50vh/3)] bg-base-100 rounded-[2vh]">Total hours spent
-                coding
-            </div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">All Friends</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">Total commits</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">CPU usage</div>
+            <!--<GitHubStatCard title="Total hours spent coding" value="500"/>-->
+            <PlaceholderCard color="secondary"/>
+            <!--<GitHubStatCard title="Number of friends" value="Coming soon..."/>-->
+            <InvisibleCard/>
+            <!--<GitHubStatCard title="Placeholder" value="000"/>-->
+            <InvisibleCard/>
+            <GitHubStatCard title="CPU usage" value="200%"/>
         </div>
         <div class="flex gap-5 mt-3">
-            <div class="w-[calc(100vw/4)] h-[calc(50vh/3)] bg-base-100 rounded-[2vh]">Hours spent coding today</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">Favourite code editor</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">Github Profile</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">RAM usage</div>
+            <!--<GitHubStatCard title="Hours spent coding today" value="200"/>-->
+            <InvisibleCard/>
+            <GitHubStatCard title="Favourite code editor" value={localStorage.getItem("defaultEditor")}/>
+            <GitHubStatCard title="Connected GitHub account" value="Tanzkalmar35"/>
+            <GitHubStatCard title="RAM usage" value="200%"/>
         </div>
         <div class="flex gap-5 mt-3">
-            <div class="w-[calc(100vw/4)] h-[calc(50vh/3)] bg-base-100 rounded-[2vh]">Screen time today</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">Friends online</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">commits today</div>
-            <div class="w-[calc(100vw/4)] bg-base-100 rounded-[2vh]">Disk usage</div>
+            <!--<GitHubStatCard title="Screen time today" value="200"/>-->
+            <InvisibleCard/>
+            <!--<GitHubStatCard title="Friends online" value="Coming soon..."/>-->
+            <PlaceholderCard color="primary"/>
+            <!--<GitHubStatCard title="Commits today" value="20"/>-->
+            <InvisibleCard/>
+            <GitHubStatCard title="Disk usage" value="200%"/>
         </div>
     </div>
 </div>
