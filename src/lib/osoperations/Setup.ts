@@ -4,8 +4,8 @@
 export function setup(): void {
     localStorage.setItem("userId", "");
 
-    localStorage.setItem("registration1Complete", "true");
-    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("registration1Complete", "false");
+    localStorage.setItem("loggedIn", "false");
 
     localStorage.setItem("loginEmail", "");
     localStorage.setItem("loginPassword", "");
@@ -13,5 +13,5 @@ export function setup(): void {
     localStorage.setItem("userRole", "");
     localStorage.setItem("defaultEditor", "");
 
-    localStorage.setItem("setupCompleted", "true");
+    localStorage.setItem("setupCompleted", "false");
 }

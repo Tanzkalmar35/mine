@@ -19,7 +19,7 @@
         >
             {#if !registration1Complete}
                 <RegistrationStep1/>
-            {:else if registration1Complete}
+            {:else}
                 <RegistrationStep2/>
             {/if}
             <LoginHeroImage/>

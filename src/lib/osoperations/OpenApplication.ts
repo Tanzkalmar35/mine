@@ -16,6 +16,15 @@ export function checkEditorPath(editor: string): boolean {
     if (editor === "IntellIJ Idea Ultimate Edition") {
         return !!get(intellijUltimatePath);
     } else if (editor === "Visual Studio Code") {
+        console.log(!!process.env.vscode + " ENV")
         return !!process.env.vscode;
     }
+}
+
+export function toggleChooseEditorPath(): void {
+    const selectPathDiv: HTMLElement = document.getElementById("manuallyChooseEditorPath");
+    const errorMessage: HTMLElement = document.getElementById("userEditorsErrorText");
+
+    errorMessage.classList.remove("hidden");
+    selectPathDiv.classList.remove("hidden");
 }

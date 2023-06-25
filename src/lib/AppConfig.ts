@@ -3,6 +3,9 @@ import {readable, writable} from "svelte/store";
 export const featuredEditors = readable(["IntellIJ Idea Ultimate Edition", "Visual Studio Code"])
 export const featuredRoles = readable(["Developer", "Tester", "Manager"])
 
+export const selectedEditor = writable("");
+export const selectedRole = writable("");
+
 export const ALERT_TYPE = {
     ERROR: "ERROR",
     WARNING: "WARNING",
