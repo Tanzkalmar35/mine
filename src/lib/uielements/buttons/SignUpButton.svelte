@@ -1,12 +1,13 @@
 <script lang="ts">
-    import {createNewUserByEmail, personalizeUserAccount} from "../../database/usermanagement/UserManager";
+    import {createNewUserByEmail, setUserDetails} from "../../database/usermanagement/UserManager";
 
     function handleClick() {
-        if (window.location.pathname === "registration?Step=1") {
+        if (localStorage.getItem("registration1Complete") === "false") {
             createNewUserByEmail(localStorage.getItem("loginEmail"), localStorage.getItem("loginPassword"))
-        } else if (window.location.pathname === "registration?Step=2") {
-            personalizeUserAccount(localStorage.getItem("username"),
-                localStorage.getItem("userRole"), localStorage.getItem("defaultEditor"))
+        } else {
+            setUserDetails(localStorage.getItem("username"),
+                localStorage.getItem("userRole"), localStorage.getItem("defaultEditor"),
+                localStorage.getItem("githubUsername"))
         }
     }
 

@@ -10,3 +10,4 @@ function convertPath(input: string): string {
 
 // The path to the IntelliJ IDEA ultimate executable
 export const intellijUltimatePath = writable(convertPath(process.env.intellij + "/idea64.exe"));
+export const vsCodePath = writable(convertPath(process.env.vscode + "/code.exe"));

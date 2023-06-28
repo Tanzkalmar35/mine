@@ -9,9 +9,11 @@ export function setup(): void {
 
     localStorage.setItem("loginEmail", "");
     localStorage.setItem("loginPassword", "");
+
     localStorage.setItem("username", "");
     localStorage.setItem("userRole", "");
     localStorage.setItem("defaultEditor", "");
+    localStorage.setItem("githubUsername", "");
 
-    localStorage.setItem("setupCompleted", "false");
+    localStorage.setItem("setupCompleted", "true");
 }

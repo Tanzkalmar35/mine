@@ -5,7 +5,14 @@
     export let options: string[];
     export let description: string;
     export let id: string;
+    export let editor: boolean = false;
     let currentSelectedOption: string;
+
+    function setEditor() {
+        if (editor) {
+            selectedEditor.set(currentSelectedOption)
+        }
+    }
 
 </script>
 
@@ -18,7 +25,7 @@
             class="w-full px-8 py-4 mb-4 rounded-lg font-medium bg-gray-100 border placeholder-gray-500 text-sm
                 focus:outline-none focus:border-gray-400 focus:bg-white"
             id={id}
-            on:change={() => selectedEditor.set(currentSelectedOption)}>
+            on:change={setEditor}>
         <option disabled selected>{placeholder}</option>
         {#each options as option}
             <option>{option}</option>

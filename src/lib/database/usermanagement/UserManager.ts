@@ -6,6 +6,15 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPo
 import {ALERT_TYPE, displayAlert} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
+import {writeIntoDatabase} from "../DatabaseAccessManager";
+
+type UserDetails = {
+    name: string,
+    role: string,
+    editor: string,
+    //editorPath: string,
+    githubUser: string,
+}
 
 /**
  * Creates a new user using email and password.
@@ -92,13 +101,30 @@ export function createNewUserByGithub(): void {
  * @param user the user's name.
  * @param role the user's role / job title.
  * @param editor the user's preferred editor.
+ * @param githubUser the user's GitHub username.
  */
-export function personalizeUserAccount(user: string, role: string, editor: string): void {
-    if (!hasValidSyntax(user)) return;
+export function setUserDetails(user: string, role: string, editor: string, githubUser: string): void {
+    //if (!hasValidSyntax(user)) return;
+    console.log("Setting user details.")
 
-    localStorage.setItem("username", user);
+    let userDetails: UserDetails = {
+        name: user,
+        editor: editor,
+        //editorPath: getDefaultEditorPath(),
+        role: role,
+        githubUser: githubUser,
+    };
+
+    localStorage.setItem("name", user);
     localStorage.setItem("defaultEditor", editor);
+    localStorage.setItem("role", role);
+    localStorage.setItem("githubUsername", githubUser);
+
     localStorage.setItem("loggedIn", "true");
+    window.location.pathname = "/";
+
+    writeIntoDatabase("Users/" + localStorage.getItem("userId") + "/Details/", userDetails, false);
+    console.log("User details saved to database.");
 }
 
 /**

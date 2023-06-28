@@ -12,8 +12,9 @@
         <h2 class="card-title text-3xl italic text-white">{projectTitle}</h2>
         <p class="text-lg overflow-hidden text-gray-400">{projectDescription}</p>
         <div class="card-actions justify-end">
-            <button class="btn" on:click={() => openFolderInEditor(projectPath)}>Open
-                in {localStorage.getItem("defaultEditor")}</button>
+            <button class="btn" on:click={() => openFolderInEditor(projectPath, localStorage.getItem("defaultEditor"))}>
+                Open in {localStorage.getItem("defaultEditor")}
+            </button>
         </div>
     </div>
 </div>

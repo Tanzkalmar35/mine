@@ -10,7 +10,7 @@
     let currentUrl: string = window.location.pathname;
 
     onMount(async () => {
-        if (localStorage.getItem("setupCompleted") === "true") setup()
+        if (localStorage.getItem("setupCompleted") === "false") setup()
         await fetchGithubRepo("Tanzkalmar35");
     });
 </script>

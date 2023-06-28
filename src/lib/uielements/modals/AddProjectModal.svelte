@@ -19,7 +19,6 @@
         projectTitle = "";
         projectDescription = "";
         projectPath = "";
-
     }
 
 </script>

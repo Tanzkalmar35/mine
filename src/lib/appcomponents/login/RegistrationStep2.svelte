@@ -8,12 +8,24 @@
     import {featuredEditors, featuredRoles, selectedEditor} from "../../AppConfig";
     import {get} from "svelte/store";
     import OpenFileExplorerButton from "../../uielements/buttons/OpenFileExplorerButton.svelte";
-    import {checkEditorPath, toggleChooseEditorPath} from "../../osoperations/OpenApplication";
+    import {checkEditorPath} from "../../osoperations/OpenApplication";
+    import {onMount} from "svelte";
+    import {toggleEditorPathElementVisibility, toggleGitHubUserInputVisibility} from "./FormActions";
 
     let disabled: boolean = true;
     let projectPath: string = "";
-    let chooseFileDiv;
     let chooseEditorPlaceholder: string = "Choose a code editor";
+
+    let chooseFileElement;
+    let githubUsernameElement;
+
+    onMount(() => {
+        if (localStorage.getItem("githubUsername") === "") {
+            toggleGitHubUserInputVisibility(false);
+        } else {
+            toggleGitHubUserInputVisibility(true);
+        }
+    });
 
     $: {
         if ($selectedEditor !== "" && $selectedEditor !== chooseEditorPlaceholder) {
@@ -26,8 +38,10 @@
     function checkEditorPathAvailable(editor: string) {
         if (!checkEditorPath(editor)) {
             if ($selectedEditor === "" || $selectedEditor === chooseEditorPlaceholder) return;
-            toggleChooseEditorPath();
+            toggleEditorPathElementVisibility(false);
+            console.log("Editor path is not available");
         } else {
+            toggleEditorPathElementVisibility(true);
             console.log("Editor path is available");
         }
     }
@@ -52,19 +66,25 @@
                     <LoginInputElement description="What is you name?" placeholder="Your name"/>
                     <LightModeDropdownElement
                             description="What code editor do you use?"
+                            editor={true}
                             id="userEditor"
                             options={get(featuredEditors)}
                             placeholder={chooseEditorPlaceholder}/>
                     <p class="text-red-500 mb-[-.5rem] mt-[-2rem] ml-1 text-sm hidden"
-                       id="userEditorsErrorText">Couldn't find the path to this editor. Please choose the editor
-                        executable.</p>
-                    <div bind:this={chooseFileDiv} class="hidden" id="manuallyChooseEditorPath">
-                        <OpenFileExplorerButton bind:currentFolderPath={projectPath} type="File"/>
+                       id="userEditorsErrorText">
+                        Please choose the editor executable.
+                    </p>
+                    <div bind:this={chooseFileElement} class="hidden" id="manuallyChooseEditorPath">
+                        <OpenFileExplorerButton bind:currentPath={projectPath} type="File"/>
                         <LightModeTextInput description="Editor Path" disabled={disabled}
                                             textValue={projectPath}/>
                     </div>
                     <LightModeDropdownElement description="What is your Role?" id="userRole"
                                               options={get(featuredRoles)} placeholder="What is your role?"/>
+                    <div class="hidden" id="githubUserElement">
+                        <LightModeTextInput bind:this={githubUsernameElement} description="What is GitHub username?"
+                                            placeholder="Username"/>
+                    </div>
                 </div>
                 <SignUpButton/>
             </div>

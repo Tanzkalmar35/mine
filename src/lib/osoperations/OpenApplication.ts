@@ -2,16 +2,26 @@ import {invoke} from '@tauri-apps/api/tauri';
 import {intellijUltimatePath} from "./OsVariableStore";
 import {get} from "svelte/store";
 
-export async function openFolderInEditor(folderPath): Promise<void> {
+/**
+ * Opens the given file in the editor
+ * @param folderPath the path to the folder to open
+ * @param editor the editor to open the folder in
+ */
+export async function openFolderInEditor(folderPath, editor): Promise<void> {
     try {
         await invoke('open_editor_with_folder', {
-            args: {folder_path: folderPath, editor_path: get(intellijUltimatePath)}
+            args: {folder_path: folderPath, editor_path: editor}
         });
     } catch (error) {
         console.error('Error while calling open_editor_with_folder:', error);
     }
 }
 
+/**
+ * Checks if the editor path is available via environment variables
+ * TODO: intellij path is never not available
+ * @param editor the editor to check for
+ */
 export function checkEditorPath(editor: string): boolean {
     if (editor === "IntellIJ Idea Ultimate Edition") {
         return !!get(intellijUltimatePath);
@@ -19,12 +29,4 @@ export function checkEditorPath(editor: string): boolean {
         console.log(!!process.env.vscode + " ENV")
         return !!process.env.vscode;
     }
-}
-
-export function toggleChooseEditorPath(): void {
-    const selectPathDiv: HTMLElement = document.getElementById("manuallyChooseEditorPath");
-    const errorMessage: HTMLElement = document.getElementById("userEditorsErrorText");
-
-    errorMessage.classList.remove("hidden");
-    selectPathDiv.classList.remove("hidden");
 }
