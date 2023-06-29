@@ -19,13 +19,15 @@ type Project = {
  * The only function that directly writes into the database.
  * Every write action that needs to be performed needs to call this function
  */
-export function writeIntoDatabase<T>(path: string, values: T, withId: boolean): void {
+export function writeIntoDatabase(path: string, values, withId: boolean): void {
     let dbRef = ref(database, path);
-    if (withId) {dbRef = push(dbRef);}
+    let newRef = push(dbRef);
 
-    set(dbRef, values).then(() => {
+    console.log("Stroring data: " + values.name);
+
+    set(newRef, values).then((): void => {
         displayAlert("Successfully stored.", ALERT_TYPE.SUCCESS, 5000);
-    }).catch(() => {
+    }).catch((): void => {
         displayAlert("Oops! Something went wrong. Please try again.", ALERT_TYPE.ERROR, 5000);
     });
 }

@@ -3,18 +3,26 @@
  */
 
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
-import {ALERT_TYPE, displayAlert} from "../../AppConfig";
+import {
+    ALERT_TYPE,
+    displayAlert,
+    selectedEditor,
+    selectedRole,
+    userDetailGitHubName,
+    userDetailName
+} from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
 import {writeIntoDatabase} from "../DatabaseAccessManager";
+import {get} from "svelte/store";
 
 type UserDetails = {
-    name: string,
-    role: string,
+    username: string,
     editor: string,
-    //editorPath: string,
-    githubUser: string,
-}
+    //editorPath: getDefaultEditorPath(),
+    role: string,
+    userGitHubName: string,
+};
 
 /**
  * Creates a new user using email and password.
@@ -96,29 +104,31 @@ export function createNewUserByGithub(): void {
 
 /**
  * Personalizes the user's account.
- *
- * @param user the user's name.
- * @param role the user's role / job title.
- * @param editor the user's preferred editor.
- * @param githubUser the user's GitHub username.
  */
-export function setUserDetails(user: string, role: string, editor: string, githubUser: string): void {
-    if (!hasValidSyntax(user) || !hasValidSyntax(githubUser)) return;
+export function setUserDetails(): void {
+
+    const username: string = get(userDetailName);
+    const editor: string = get(selectedEditor);
+    const userGitHubName: string = get(userDetailGitHubName);
+    const role: string = get(selectedRole);
+
+    if (!hasValidSyntax(username) || !hasValidSyntax(userGitHubName)) return;
 
     let userDetails: UserDetails = {
-        name: user,
-        editor: editor,
+        username,
+        editor,
         //editorPath: getDefaultEditorPath(),
-        role: role,
-        githubUser: githubUser,
+        role,
+        userGitHubName,
     };
 
-    localStorage.setItem("name", user);
-    localStorage.setItem("defaultEditor", editor);
-    localStorage.setItem("role", role);
-    localStorage.setItem("githubUsername", githubUser);
+    localStorage.setItem("name", "username");
+    localStorage.setItem("defaultEditor", "editor");
+    localStorage.setItem("role", "role");
+    localStorage.setItem("githubUsername", "userGitHubName");
 
     localStorage.setItem("loggedIn", "true");
+
     window.location.pathname = "/";
 
     writeIntoDatabase("Users/" + localStorage.getItem("userId") + "/Details/", userDetails, false);

@@ -1,8 +1,20 @@
 <script lang="ts">
+    import {userDetailGitHubName, userDetailName} from "../../../AppConfig";
+
     export let description: string;
     export let placeholder: string;
     export let disabled: boolean = false;
-    export let textValue: string;
+    export let type: string = "";
+
+    let textValue: string;
+
+    function setValue() {
+        if (type === "name") {
+            userDetailName.set(textValue);
+        } else if (type === "githubName") {
+            userDetailGitHubName.set(textValue);
+        }
+    }
 
 </script>
 
@@ -16,6 +28,7 @@
                 focus:outline-none focus:border-gray-400 focus:bg-white"
             disabled={disabled}
             id="loginTextElement"
+            on:change={setValue}
             placeholder={placeholder}
             type="text"
     />

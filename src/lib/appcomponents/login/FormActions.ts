@@ -14,13 +14,13 @@ export function toggleGitHubUserInputVisibility(visible: boolean): void {
 
 /**
  * Toggles the visibility of the div containing the editor path selection
- * @param visibility whether the div should be visible or not
+ * @param visible whether the div should be visible or not
  */
-export function toggleEditorPathElementVisibility(visibility: boolean): void {
+export function toggleEditorPathElementVisibility(visible: boolean): void {
     const selectPathDiv: HTMLElement = document.getElementById("manuallyChooseEditorPath");
     const errorMessage: HTMLElement = document.getElementById("userEditorsErrorText");
 
-    if (!visibility) {
+    if (visible) {
         errorMessage.classList.remove("hidden");
         selectPathDiv.classList.remove("hidden");
     } else {

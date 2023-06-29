@@ -14,11 +14,11 @@
 
     let disabled: boolean = true;
     let projectPath: string = "";
+
     let chooseEditorPlaceholder: string = "Choose a code editor";
-
     let chooseFileElement;
-    let githubUsernameElement;
 
+    let githubUsernameElement;
     onMount(() => {
         if (localStorage.getItem("githubUsername") === "") {
             toggleGitHubUserInputVisibility(true);
@@ -38,10 +38,10 @@
     function checkEditorPathAvailable(editor: string) {
         if (!checkEditorPath(editor)) {
             if ($selectedEditor === "" || $selectedEditor === chooseEditorPlaceholder) return;
-            toggleEditorPathElementVisibility(false);
+            toggleEditorPathElementVisibility(true);
             console.log("Editor path is not available");
         } else {
-            toggleEditorPathElementVisibility(true);
+            toggleEditorPathElementVisibility(false);
             console.log("Editor path is available");
         }
     }
@@ -63,13 +63,14 @@
         <div class="w-full flex-1 mt-8">
             <div class="mx-auto max-w-xs">
                 <div class="flex flex-col gap-4">
-                    <LoginInputElement description="What is you name?" placeholder="Your name"/>
+                    <LoginInputElement description="What is you name?" placeholder="Your name" type="name"/>
                     <LightModeDropdownElement
                             description="What code editor do you use?"
                             editor={true}
                             id="userEditor"
                             options={get(featuredEditors)}
-                            placeholder={chooseEditorPlaceholder}/>
+                            placeholder={chooseEditorPlaceholder}
+                            type="editor"/>
                     <p class="text-red-500 mb-[-.5rem] mt-[-2rem] ml-1 text-sm hidden"
                        id="userEditorsErrorText">
                         Please choose the editor executable.
@@ -80,10 +81,11 @@
                                             textValue={projectPath}/>
                     </div>
                     <LightModeDropdownElement description="What is your Role?" id="userRole"
-                                              options={get(featuredRoles)} placeholder="What is your role?"/>
+                                              options={get(featuredRoles)} placeholder="What is your role?"
+                                              type="role"/>
                     <div class="hidden" id="githubUserElement">
                         <LightModeTextInput bind:this={githubUsernameElement} description="What is GitHub username?"
-                                            placeholder="Username"/>
+                                            placeholder="Username" type="githubName"/>
                     </div>
                 </div>
                 <SignUpButton/>

@@ -5,9 +5,7 @@
         if (localStorage.getItem("registration1Complete") === "false") {
             createNewUserByEmail(localStorage.getItem("loginEmail"), localStorage.getItem("loginPassword"))
         } else {
-            setUserDetails(localStorage.getItem("username"),
-                localStorage.getItem("userRole"), localStorage.getItem("defaultEditor"),
-                localStorage.getItem("githubUsername"))
+            setUserDetails();
         }
     }
 
