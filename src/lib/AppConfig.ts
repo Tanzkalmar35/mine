@@ -6,6 +6,11 @@ export const featuredRoles = readable(["Developer", "Tester", "Manager"])
 export const selectedEditor = writable("");
 export const selectedRole = writable("");
 
+export const userDetailName = writable("");
+export const userDetailGitHubName = writable("");
+
+// TODO: editor path currently gets ignored
+
 export const ALERT_TYPE = {
     ERROR: "ERROR",
     WARNING: "WARNING",

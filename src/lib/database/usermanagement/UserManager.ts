@@ -28,7 +28,6 @@ export function createNewUserByEmail(email: string, password: string): void {
 
             localStorage.setItem("userId", user.uid);
             localStorage.setItem("registration1Complete", "true");
-            window.location = location;
 
         }).catch((error): void => {
                 handleError(error.code, true, email, password);
@@ -51,7 +50,7 @@ export function loginToExistingUser(email: string, password: string): void {
 
         localStorage.setItem("userId", user.uid);
         localStorage.setItem("registration1Complete", "true");
-        window.location = location;
+        localStorage.setItem("loggedIn", "true");
 
     }).catch((error): void => {
         handleError(error.code, false, email, password);
@@ -104,8 +103,7 @@ export function createNewUserByGithub(): void {
  * @param githubUser the user's GitHub username.
  */
 export function setUserDetails(user: string, role: string, editor: string, githubUser: string): void {
-    //if (!hasValidSyntax(user)) return;
-    console.log("Setting user details.")
+    if (!hasValidSyntax(user) || !hasValidSyntax(githubUser)) return;
 
     let userDetails: UserDetails = {
         name: user,

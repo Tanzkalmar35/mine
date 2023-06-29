@@ -1,16 +1,18 @@
 <script lang="ts">
-    import {selectedEditor} from "../../../AppConfig";
+    import {selectedEditor, selectedRole} from "../../../AppConfig";
 
     export let placeholder: string;
     export let options: string[];
     export let description: string;
     export let id: string;
-    export let editor: boolean = false;
+    export let type: string = "";
     let currentSelectedOption: string;
 
     function setEditor() {
-        if (editor) {
+        if (type === "editor") {
             selectedEditor.set(currentSelectedOption)
+        } else if (type === "role") {
+            selectedRole.set(currentSelectedOption)
         }
     }
 

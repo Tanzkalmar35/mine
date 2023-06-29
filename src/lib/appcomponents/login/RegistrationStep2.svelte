@@ -21,9 +21,9 @@
 
     onMount(() => {
         if (localStorage.getItem("githubUsername") === "") {
-            toggleGitHubUserInputVisibility(false);
-        } else {
             toggleGitHubUserInputVisibility(true);
+        } else {
+            toggleGitHubUserInputVisibility(false);
         }
     });
 
