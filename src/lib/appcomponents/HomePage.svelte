@@ -22,7 +22,7 @@
         <div class="absolute scale-50 left-[-5rem]">
             <AppLogo/>
         </div>
-        <p class="absolute bottom-0 left-[2vh] text-[7rem]">Home</p>
+        <p class="absolute bottom-0 left-[2vh] text-[6rem]">Hello {localStorage.getItem("name").split(" ")[0]}</p>
         <div>
             <p class="flex absolute bottom-[1vh] right-[20%] text-5xl">Daily online time (chart)</p>
         </div>
@@ -41,7 +41,7 @@
             <!--<GitHubStatCard title="Hours spent coding today" value="200"/>-->
             <InvisibleCard/>
             <GitHubStatCard title="Favourite code editor" value={localStorage.getItem("defaultEditor")}/>
-            <GitHubStatCard title="Connected GitHub account" value="Tanzkalmar35"/>
+            <GitHubStatCard title="Connected GitHub account" value={localStorage.getItem("githubUsername")}/>
             <GitHubStatCard title="RAM usage" value="200%"/>
         </div>
         <div class="flex gap-5 mt-3">

@@ -23,7 +23,7 @@ export async function openFolderInEditor(folderPath, editorPath): Promise<void> 
  * @param editor the editor to check for
  */
 export function checkEditorPath(editor: string): boolean {
-    if (editor === "IntellIJ Idea Ultimate Edition") {
+    if (editor === "IntellIJ Idea UE") {
         if (validEnvironmentVariable(editor)) {
             localStorage.setItem("defaultEditorPath", get(intellijUltimatePath));
             return true;
@@ -37,7 +37,7 @@ export function checkEditorPath(editor: string): boolean {
 }
 
 function validEnvironmentVariable(editor: string): boolean {
-    if (editor === "IntellIJ Idea Ultimate Edition") {
+    if (editor === "IntellIJ Idea UE") {
         return !get(intellijUltimatePath).startsWith("undefined")
             && !get(intellijUltimatePath).startsWith("null")
             && !get(intellijUltimatePath).startsWith("/idea64.exe");

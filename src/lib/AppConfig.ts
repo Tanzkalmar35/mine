@@ -1,6 +1,6 @@
 import {readable, writable} from "svelte/store";
 
-export const featuredEditors = readable(["IntellIJ Idea Ultimate Edition", "Visual Studio Code"])
+export const featuredEditors = readable(["IntellIJ Idea UE", "Visual Studio Code"])
 export const featuredRoles = readable(["Developer", "Tester", "Manager"])
 
 export const selectedEditor = writable("");
