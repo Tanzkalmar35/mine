@@ -1,28 +1,32 @@
 <script lang="ts">
-    import Dashboard from "./lib/AppComponents/Dashboard.svelte";
-    import Settings from "./lib/AppComponents/Settings.svelte";
-    import HomePage from "./lib/AppComponents/HomePage.svelte";
-    import LoginPage from "./lib/AppComponents/Login/LoginPage.svelte";
-    import {currentPage, loggedIn} from "./lib/AppConfig";
+    import Dashboard from "./lib/appcomponents/Dashboard.svelte";
+    import Settings from "./lib/appcomponents/Settings.svelte";
+    import HomePage from "./lib/appcomponents/HomePage.svelte";
+    import LoginPage from "./lib/appcomponents/login/LoginPage.svelte";
+    import {onMount} from "svelte";
+    import {setup} from "./lib/osoperations/Setup";
+    import {fetchGithubRepo} from "./lib/api/github/ApiWrapper";
 
-    $: {
-        if (!$loggedIn) currentPage.set("login");
-        else currentPage.set("home");
-    }
+    let currentUrl: string = window.location.pathname;
+
+    onMount(async () => {
+        if (!localStorage.getItem("setupCompleted")) setup()
+        await fetchGithubRepo("Tanzkalmar35");
+    });
 </script>
 
 <main class="w-screen h-screen flex justify-center text-black bg-accent">
     <div class="w-full h-full absolute z-1" id="content">
-        {#if $currentPage === "login"}
-            <LoginPage/>
-        {/if}
-        {#if $currentPage === "home"}
+        {#if currentUrl === "/"}
             <HomePage/>
         {/if}
-        {#if $currentPage === "dashboard"}
+        {#if currentUrl === "/registration"}
+            <LoginPage/>
+        {/if}
+        {#if currentUrl === "/dashboard"}
             <Dashboard/>
         {/if}
-        {#if $currentPage === "settings"}
+        {#if currentUrl === "/settings"}
             <Settings/>
         {/if}
     </div>
