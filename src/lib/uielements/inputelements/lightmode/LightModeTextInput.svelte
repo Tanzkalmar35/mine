@@ -4,14 +4,14 @@
     export let description: string;
     export let placeholder: string;
     export let disabled: boolean = false;
-    export let type: string = "";
+    export let useCase: string = "";
 
     let textValue: string;
 
     function setValue() {
-        if (type === "name") {
+        if (useCase === "name") {
             userDetailName.set(textValue);
-        } else if (type === "githubName") {
+        } else if (useCase === "githubName") {
             userDetailGitHubName.set(textValue);
         }
     }

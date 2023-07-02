@@ -1,6 +1,6 @@
 <script lang="ts">
     import AppLogo from "../uielements/img/AppLogo.svelte";
-    import HomePageNavbar from "../subcomponents/navigation/HomePageNavbar.svelte";
+    import HomePageNavbar from "../navigation/HomePageNavbar.svelte";
     import {onMount} from "svelte";
     import GitHubStatCard from "../uielements/cards/GitHubStatCard.svelte";
     import InvisibleCard from "../uielements/cards/InvisibleCard.svelte";

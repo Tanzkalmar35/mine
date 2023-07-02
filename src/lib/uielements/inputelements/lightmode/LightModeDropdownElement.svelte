@@ -5,13 +5,13 @@
     export let options: string[];
     export let description: string;
     export let id: string;
-    export let type: string = "";
+    export let useCase: string = "";
     let currentSelectedOption: string;
 
     function setEditor() {
-        if (type === "editor") {
+        if (useCase === "editor") {
             selectedEditor.set(currentSelectedOption)
-        } else if (type === "role") {
+        } else if (useCase === "role") {
             selectedRole.set(currentSelectedOption)
         }
     }

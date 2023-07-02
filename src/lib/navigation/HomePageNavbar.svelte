@@ -1,5 +1,5 @@
 <script lang="ts">
-    import NavComponent from "../../uielements/navigation/NavComponent.svelte";
+    import NavComponent from "./NavComponent.svelte";
 
     import MdDashboard from 'svelte-icons/md/MdDashboard.svelte'
     import MdHome from 'svelte-icons/md/MdHome.svelte'

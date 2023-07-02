@@ -9,24 +9,37 @@ import {ALERT_TYPE, displayAlert} from "../AppConfig";
 // Firebase imports
 import {onValue, push, ref, set} from "firebase/database";
 
-type Project = {
-    name: string,
-    description: string,
-    path: string
-}
-
 /**
- * The only function that directly writes into the database.
- * Every write action that needs to be performed needs to call this function
+ * Does the actual writing into the database.
  */
 export function writeIntoDatabase(path: string, values, withId: boolean): void {
     let dbRef = ref(database, path);
-    let newRef = push(dbRef);
+    if (withId) dbRef = push(dbRef);
 
-    console.log("Stroring data: " + values.name);
+    console.log("Storing data: " + values);
 
-    set(newRef, values).then((): void => {
+    set(dbRef, values).then((): void => {
         displayAlert("Successfully stored.", ALERT_TYPE.SUCCESS, 5000);
+    }).catch((): void => {
+        displayAlert("Oops! Something went wrong. Please try again.", ALERT_TYPE.ERROR, 5000);
+    });
+}
+
+/**
+ * The exact same function as writeIntoDatabase, but with a redirect to a new url.
+ */
+export function writeIntoDatabaseChangeUrl(path: string, values, withId: boolean, url: string): void {
+
+    console.log("Writing into database: " + path)
+
+    let dbRef = ref(database, path);
+    if (withId) dbRef = push(dbRef);
+
+    console.log("Storing data: " + values);
+
+    set(dbRef, values).then((): void => {
+        displayAlert("Successfully stored.", ALERT_TYPE.SUCCESS, 5000);
+        window.location.pathname = url;
     }).catch((): void => {
         displayAlert("Oops! Something went wrong. Please try again.", ALERT_TYPE.ERROR, 5000);
     });
@@ -36,12 +49,13 @@ export function writeIntoDatabase(path: string, values, withId: boolean): void {
  * Stores a new project in the database.
  */
 export function storeProject(name: string, description: string, path: string): void {
-    const values: Project = {
-        name,
-        description,
-        path
+    const dbPath: string = "Users/" + localStorage.getItem("userId") + "/Projects/";
+    const values = {
+        "name": name,
+        "description": description,
+        "path": path,
     }
-    writeIntoDatabase("Users/" + localStorage.getItem("userId") + "/Projects/", values, true)
+    writeIntoDatabase(dbPath, values, true);
 }
 
 /**

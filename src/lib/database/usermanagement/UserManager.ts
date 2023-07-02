@@ -13,16 +13,8 @@ import {
 } from "../../AppConfig";
 import {auth, githubAuthProvider, googleAuthProvider} from "../DatabaseConfig";
 import {handleError, setFormError} from "./UserCreationErrorHandler";
-import {writeIntoDatabase} from "../DatabaseAccessManager";
+import {writeIntoDatabaseChangeUrl} from "../DatabaseAccessManager";
 import {get} from "svelte/store";
-
-type UserDetails = {
-    username: string,
-    editor: string,
-    //editorPath: getDefaultEditorPath(),
-    role: string,
-    userGitHubName: string,
-};
 
 /**
  * Creates a new user using email and password.
@@ -85,6 +77,37 @@ export function createNewUserByGoogle(): void {
 }
 
 /**
+ * Personalizes the user's account.
+ */
+export function setUserDetails(): void {
+
+    const username: string = get(userDetailName);
+    const editor: string = get(selectedEditor);
+    const userGitHubName: string = get(userDetailGitHubName);
+    const role: string = get(selectedRole);
+
+    if (!hasValidSyntax(username) || !hasValidSyntax(userGitHubName)) return;
+
+    let userDetails = {
+        "username": username,
+        "editor": editor,
+        "role": role,
+        "userGitHubName": userGitHubName,
+    }
+
+    localStorage.setItem("name", username);
+    localStorage.setItem("defaultEditor", editor);
+    localStorage.setItem("role", role);
+    localStorage.setItem("githubUsername", userGitHubName);
+
+    writeIntoDatabaseChangeUrl("Users/" + localStorage.getItem("userId") + "/Details/", userDetails, false, "/");
+
+    localStorage.setItem("loggedIn", "true");
+
+    console.log("User details saved to database.");
+}
+
+/**
  * Creates a new user using GitHub authentication.
  */
 export function createNewUserByGithub(): void {
@@ -100,39 +123,6 @@ export function createNewUserByGithub(): void {
         // Handle Errors here.
         displayAlert(error.message, ALERT_TYPE.ERROR, 5000);
     });
-}
-
-/**
- * Personalizes the user's account.
- */
-export function setUserDetails(): void {
-
-    const username: string = get(userDetailName);
-    const editor: string = get(selectedEditor);
-    const userGitHubName: string = get(userDetailGitHubName);
-    const role: string = get(selectedRole);
-
-    if (!hasValidSyntax(username) || !hasValidSyntax(userGitHubName)) return;
-
-    let userDetails: UserDetails = {
-        username,
-        editor,
-        //editorPath: getDefaultEditorPath(),
-        role,
-        userGitHubName,
-    };
-
-    localStorage.setItem("name", "username");
-    localStorage.setItem("defaultEditor", "editor");
-    localStorage.setItem("role", "role");
-    localStorage.setItem("githubUsername", "userGitHubName");
-
-    localStorage.setItem("loggedIn", "true");
-
-    window.location.pathname = "/";
-
-    writeIntoDatabase("Users/" + localStorage.getItem("userId") + "/Details/", userDetails, false);
-    console.log("User details saved to database.");
 }
 
 /**

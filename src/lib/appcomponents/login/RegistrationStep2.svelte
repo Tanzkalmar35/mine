@@ -63,14 +63,14 @@
         <div class="w-full flex-1 mt-8">
             <div class="mx-auto max-w-xs">
                 <div class="flex flex-col gap-4">
-                    <LoginInputElement description="What is you name?" placeholder="Your name" type="name"/>
+                    <LoginInputElement description="What is you name?" placeholder="Your name" useCase="name"/>
                     <LightModeDropdownElement
                             description="What code editor do you use?"
                             editor={true}
                             id="userEditor"
                             options={get(featuredEditors)}
                             placeholder={chooseEditorPlaceholder}
-                            type="editor"/>
+                            useCase="editor"/>
                     <p class="text-red-500 mb-[-.5rem] mt-[-2rem] ml-1 text-sm hidden"
                        id="userEditorsErrorText">
                         Please choose the editor executable.
@@ -82,10 +82,10 @@
                     </div>
                     <LightModeDropdownElement description="What is your Role?" id="userRole"
                                               options={get(featuredRoles)} placeholder="What is your role?"
-                                              type="role"/>
+                                              useCase="role"/>
                     <div class="hidden" id="githubUserElement">
                         <LightModeTextInput bind:this={githubUsernameElement} description="What is GitHub username?"
-                                            placeholder="Username" type="githubName"/>
+                                            placeholder="Username" useCase="githubName"/>
                     </div>
                 </div>
                 <SignUpButton/>

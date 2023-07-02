@@ -1,9 +1,9 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import ProjectCard from "../subcomponents/ProjectCard.svelte";
+    import ProjectCard from "../uielements/cards/ProjectCard.svelte";
     import AddProjectModal from "../uielements/modals/AddProjectModal.svelte";
     import {getProjectData} from "../database/DatabaseAccessManager.ts";
-    import DashboardNavigation from "../subcomponents/navigation/DashboardNavigation.svelte";
+    import DashboardNavigation from "../navigation/DashboardNavigation.svelte";
     import Alert from "../uielements/alerts/Alert.svelte";
 
     let projectData = [];
