@@ -1,5 +1,6 @@
 <script lang="ts">
     import {userDetailGitHubName, userDetailName} from "../../../AppConfig";
+    import {defaultEditorPath} from "../../../AppConfig.js";
 
     export let description: string;
     export let placeholder: string;
@@ -13,6 +14,8 @@
             userDetailName.set(textValue);
         } else if (useCase === "githubName") {
             userDetailGitHubName.set(textValue);
+        } else if (useCase === "editorPath") {
+            defaultEditorPath.set(textValue);
         }
     }
 

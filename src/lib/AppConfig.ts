@@ -9,6 +9,8 @@ export const selectedRole = writable("");
 export const userDetailName = writable("");
 export const userDetailGitHubName = writable("");
 
+export const defaultEditorPath = writable("");
+
 // TODO: editor path currently gets ignored
 
 export const ALERT_TYPE = {

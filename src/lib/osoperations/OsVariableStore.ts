@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import {readable} from "svelte/store";
 
 function convertPath(input: string): string {
     const components: string[] = input.split(/\\/);
@@ -9,5 +9,5 @@ function convertPath(input: string): string {
 }
 
 // The path to the IntelliJ IDEA ultimate executable
-export const intellijUltimatePath = writable(convertPath(process.env.intellij + "/idea64.exe"));
-export const vsCodePath = writable(convertPath(process.env.vscode + "/code.exe"));
+export const intellijUltimatePath = readable(convertPath(process.env.intellij + "/idea64.exe"));
+export const vsCodePath = readable(convertPath(process.env.vscode + "/code.exe"));

@@ -37,7 +37,6 @@
 
     function checkEditorPathAvailable(editor: string) {
         if (!checkEditorPath(editor)) {
-            if ($selectedEditor === "" || $selectedEditor === chooseEditorPlaceholder) return;
             toggleEditorPathElementVisibility(true);
             console.log("Editor path is not available");
         } else {

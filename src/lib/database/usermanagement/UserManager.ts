@@ -83,6 +83,7 @@ export function setUserDetails(): void {
 
     const username: string = get(userDetailName);
     const editor: string = get(selectedEditor);
+    const editorPath: string = localStorage.getItem("defaultEditorPath");
     const userGitHubName: string = get(userDetailGitHubName);
     const role: string = get(selectedRole);
 
@@ -91,6 +92,7 @@ export function setUserDetails(): void {
     let userDetails = {
         "username": username,
         "editor": editor,
+        "defaultEditorPath": editorPath,
         "role": role,
         "userGitHubName": userGitHubName,
     }

@@ -23,10 +23,10 @@
         {#if currentUrl === "/registration"}
             <LoginPage/>
         {/if}
-        {#if currentUrl === "/Dashboard"}
+        {#if currentUrl === "/dashboard"}
             <Dashboard/>
         {/if}
-        {#if currentUrl === "/Settings"}
+        {#if currentUrl === "/settings"}
             <Settings/>
         {/if}
     </div>
