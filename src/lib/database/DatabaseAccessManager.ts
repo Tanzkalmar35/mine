@@ -30,15 +30,11 @@ export function writeIntoDatabase(path: string, values, withId: boolean): void {
  */
 export function writeIntoDatabaseChangeUrl(path: string, values, withId: boolean, url: string): void {
 
-    console.log("Writing into database: " + path)
-
     let dbRef = ref(database, path);
     if (withId) dbRef = push(dbRef);
 
-    console.log("Storing data: " + values);
-
     set(dbRef, values).then((): void => {
-        displayAlert("Successfully stored.", ALERT_TYPE.SUCCESS, 5000);
+        displayAlert("Success.", ALERT_TYPE.SUCCESS, 5000);
         window.location.pathname = url;
     }).catch((): void => {
         displayAlert("Oops! Something went wrong. Please try again.", ALERT_TYPE.ERROR, 5000);
@@ -56,6 +52,7 @@ export function storeProject(name: string, description: string, path: string): v
         "path": path,
     }
     writeIntoDatabase(dbPath, values, true);
+    displayAlert("Success.", ALERT_TYPE.SUCCESS, 5000);
 }
 
 /**
