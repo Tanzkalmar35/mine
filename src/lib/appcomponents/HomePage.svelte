@@ -5,12 +5,35 @@
     import GitHubStatCard from "../uielements/cards/GitHubStatCard.svelte";
     import InvisibleCard from "../uielements/cards/InvisibleCard.svelte";
     import PlaceholderCard from "../uielements/cards/PlaceholderCard.svelte";
+    import {getCpuUsage, getMemoryResource, getOsType} from "../osoperations/DeviceResources";
+
+    let os: string;
+    let cpu: string;
+    let ram: string = "0";
 
     onMount(function () {
         if (localStorage.getItem("loggedIn") === "false") {
             window.location.href = "/registration";
         }
-    })
+
+        getOsType().then(value => {
+            console.log(value)
+            os = value;
+        });
+
+        setInterval(setSystemData, 2000);
+    });
+
+    async function setSystemData() {
+        await getMemoryResource().then(value => {
+            console.log(value)
+            ram = value + "%";
+        });
+        await getCpuUsage().then(value => {
+            console.log(value)
+            cpu = value + "%";
+        });
+    }
 
 </script>
 
@@ -35,14 +58,14 @@
             <InvisibleCard/>
             <!--<GitHubStatCard title="Placeholder" value="000"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="CPU usage" value="200%"/>
+            <GitHubStatCard title="Operating System" value={os}/>
         </div>
         <div class="flex gap-5 mt-3">
             <!--<GitHubStatCard title="Hours spent coding today" value="200"/>-->
             <InvisibleCard/>
             <GitHubStatCard title="Favourite code editor" value={localStorage.getItem("defaultEditor")}/>
             <GitHubStatCard title="Connected GitHub account" value={localStorage.getItem("githubUsername")}/>
-            <GitHubStatCard title="RAM usage" value="200%"/>
+            <GitHubStatCard title="RAM usage" value={ram}/>
         </div>
         <div class="flex gap-5 mt-3">
             <!--<GitHubStatCard title="Screen time today" value="200"/>-->
@@ -51,7 +74,7 @@
             <PlaceholderCard color="primary"/>
             <!--<GitHubStatCard title="Commits today" value="20"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="Disk usage" value="200%"/>
+            <GitHubStatCard title="Cpu usage" value={cpu}/>
         </div>
     </div>
 </div>
