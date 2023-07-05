@@ -1,11 +1,11 @@
 <script lang="ts">
-    import AppLogo from "../uielements/img/AppLogo.svelte";
-    import HomePageNavbar from "../navigation/HomePageNavbar.svelte";
+    import AppLogo from "../../uielements/img/AppLogo.svelte";
+    import HomePageNavbar from "../../navigation/HomePageNavbar.svelte";
     import {onMount} from "svelte";
-    import GitHubStatCard from "../uielements/cards/GitHubStatCard.svelte";
-    import InvisibleCard from "../uielements/cards/InvisibleCard.svelte";
-    import PlaceholderCard from "../uielements/cards/PlaceholderCard.svelte";
-    import {getMemoryResource, getOsType, getSwapUsage} from "../osoperations/DeviceResources";
+    import InfoCard from "../../uielements/cards/HomePageInfoCard.svelte";
+    import InvisibleCard from "../../uielements/cards/InvisibleCard.svelte";
+    import PlaceholderCard from "../../uielements/cards/PlaceholderCard.svelte";
+    import {fetchGithubRepo, getMemoryUsage, getOsType, getSwapUsage} from "./CardDataUtils";
 
     let os: string;
     let swap: string = "0";
@@ -17,20 +17,17 @@
         }
 
         getOsType().then(value => {
-            console.log(value)
             os = value;
         });
-
-        setInterval(setSystemData, 2000);
+        fetchGithubRepo(localStorage.getItem("githubUsername"));
+        setInterval(setSystemData, 1500);
     });
 
     async function setSystemData() {
-        await getMemoryResource().then(value => {
-            console.log(value)
+        await getMemoryUsage().then(value => {
             ram = value + "%";
         });
         await getSwapUsage().then(value => {
-            console.log(value)
             swap = value + "%";
         });
     }
@@ -58,14 +55,14 @@
             <InvisibleCard/>
             <!--<GitHubStatCard title="Placeholder" value="000"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="Operating System" value={os}/>
+            <InfoCard title="Operating System" value={os}/>
         </div>
         <div class="flex gap-5 mt-3">
             <!--<GitHubStatCard title="Hours spent coding today" value="200"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="Favourite code editor" value={localStorage.getItem("defaultEditor")}/>
-            <GitHubStatCard title="Connected GitHub account" value={localStorage.getItem("githubUsername")}/>
-            <GitHubStatCard title="RAM usage" value={ram}/>
+            <InfoCard title="Favourite code editor" value={localStorage.getItem("defaultEditor")}/>
+            <InfoCard title="Connected GitHub account" value={localStorage.getItem("githubUsername")}/>
+            <InfoCard title="RAM usage" value={ram}/>
         </div>
         <div class="flex gap-5 mt-3">
             <!--<GitHubStatCard title="Screen time today" value="200"/>-->
@@ -74,7 +71,7 @@
             <PlaceholderCard color="primary"/>
             <!--<GitHubStatCard title="Commits today" value="20"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="Swap usage" value={swap}/>
+            <InfoCard title="Swap usage" value={swap}/>
         </div>
     </div>
 </div>

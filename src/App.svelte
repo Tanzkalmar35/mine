@@ -1,17 +1,15 @@
 <script lang="ts">
     import Dashboard from "./lib/appcomponents/Dashboard.svelte";
     import Settings from "./lib/appcomponents/Settings.svelte";
-    import HomePage from "./lib/appcomponents/HomePage.svelte";
+    import HomePage from "./lib/appcomponents/homepage/HomePage.svelte";
     import LoginPage from "./lib/appcomponents/login/LoginPage.svelte";
     import {onMount} from "svelte";
     import {setup} from "./lib/osoperations/Setup";
-    import {fetchGithubRepo} from "./lib/api/github/ApiWrapper";
 
     let currentUrl: string = window.location.pathname;
 
     onMount(async () => {
         if (!localStorage.getItem("setupCompleted")) setup()
-        await fetchGithubRepo("Tanzkalmar35");
     });
 </script>
 

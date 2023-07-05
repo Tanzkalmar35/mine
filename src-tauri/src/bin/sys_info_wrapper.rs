@@ -28,3 +28,5 @@ pub(crate) fn get_os_type() -> String {
 
     return sys.name().unwrap_or_default();
 }
+
+fn main() {}

@@ -24,3 +24,5 @@ pub(crate) fn open_editor_with_folder(args: OpenEditorWithFolderArgs) {
         println!("Failed to open folder in the editor: {}", folder_path);
     }
 }
+
+fn main() {}

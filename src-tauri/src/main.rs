@@ -1,4 +1,6 @@
+#[path = "bin/sys_info_wrapper.rs"]
 mod sys_info_wrapper;
+#[path = "bin/open_application.rs"]
 mod open_application;
 
 #[tauri::command]
