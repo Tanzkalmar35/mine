@@ -5,10 +5,10 @@
     import GitHubStatCard from "../uielements/cards/GitHubStatCard.svelte";
     import InvisibleCard from "../uielements/cards/InvisibleCard.svelte";
     import PlaceholderCard from "../uielements/cards/PlaceholderCard.svelte";
-    import {getCpuUsage, getMemoryResource, getOsType} from "../osoperations/DeviceResources";
+    import {getMemoryResource, getOsType, getSwapUsage} from "../osoperations/DeviceResources";
 
     let os: string;
-    let cpu: string;
+    let swap: string = "0";
     let ram: string = "0";
 
     onMount(function () {
@@ -29,9 +29,9 @@
             console.log(value)
             ram = value + "%";
         });
-        await getCpuUsage().then(value => {
+        await getSwapUsage().then(value => {
             console.log(value)
-            cpu = value + "%";
+            swap = value + "%";
         });
     }
 
@@ -74,7 +74,7 @@
             <PlaceholderCard color="primary"/>
             <!--<GitHubStatCard title="Commits today" value="20"/>-->
             <InvisibleCard/>
-            <GitHubStatCard title="Cpu usage" value={cpu}/>
+            <GitHubStatCard title="Swap usage" value={swap}/>
         </div>
     </div>
 </div>

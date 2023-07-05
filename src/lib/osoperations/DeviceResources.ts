@@ -18,10 +18,10 @@ export async function getMemoryResource(): Promise<String> {
 /**
  * Returns the Cpu usage of the device
  */
-export async function getCpuUsage(): Promise<String> {
+export async function getSwapUsage(): Promise<String> {
     let cpuUsage: string = "0";
     try {
-        await invoke('get_cpu_usage').then((result): void => {
+        await invoke('get_swap_usage').then((result): void => {
             cpuUsage = result.toString();
         });
     } catch (error) {

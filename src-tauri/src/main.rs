@@ -7,8 +7,8 @@ fn get_memory_usage() -> String {
 }
 
 #[tauri::command]
-fn get_cpu_usage() -> String {
-    return sys_info_wrapper::get_cpu_usage();
+async fn get_swap_usage() -> String {
+    return sys_info_wrapper::get_swap_usage();
 }
 
 #[tauri::command]
@@ -25,7 +25,7 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             get_memory_usage,
-            get_cpu_usage,
+            get_swap_usage,
             get_os_type,
             open_editor_with_folder
     ])
