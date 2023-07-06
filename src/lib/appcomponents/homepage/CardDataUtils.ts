@@ -57,7 +57,6 @@ export async function getOsType(): Promise<String> {
  * - email
  * - following count (with _url)
  * - gists_url (whatever this is)
- * - public_gists
  * - hireable
  * - id
  * - location
