@@ -68,7 +68,7 @@ export async function getOsType(): Promise<String> {
  * - repos_url
  * - twitter_username
  * - updated_at
- * - url (to the user's GitHub profile
+ * - url (to the user's GitHub profile)
  * - starred_url
  * - type
  */
