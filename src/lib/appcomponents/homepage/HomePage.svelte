@@ -5,11 +5,13 @@
     import InfoCard from "../../uielements/cards/HomePageInfoCard.svelte";
     import InvisibleCard from "../../uielements/cards/InvisibleCard.svelte";
     import PlaceholderCard from "../../uielements/cards/PlaceholderCard.svelte";
-    import {fetchGithubRepo, getMemoryUsage, getOsType, getSwapUsage} from "./CardDataUtils";
+    import {fetchGithubRepo, getMemoryUsage, getOsType, getScreenTime, getSwapUsage} from "./CardDataUtils";
 
     let os: string;
     let swap: string = "0";
     let ram: string = "0";
+
+    let onlineTime: string = "0";
 
     onMount(function () {
         if (localStorage.getItem("loggedIn") === "false") {
@@ -19,8 +21,10 @@
         getOsType().then(value => {
             os = value;
         });
+
         fetchGithubRepo(localStorage.getItem("githubUsername"));
         setInterval(setSystemData, 1500);
+        setInterval(getOnlineTime, 60000);
     });
 
     async function setSystemData() {
@@ -30,6 +34,10 @@
         await getSwapUsage().then(value => {
             swap = value + "%";
         });
+    }
+
+    function getOnlineTime() {
+        onlineTime = getScreenTime();
     }
 
 </script>
@@ -65,8 +73,8 @@
             <InfoCard title="RAM usage" value={ram}/>
         </div>
         <div class="flex gap-5 mt-3">
-            <!--<GitHubStatCard title="Screen time today" value="200"/>-->
-            <InvisibleCard/>
+            <InfoCard title="Screen time today"
+                      value={onlineTime}/>
             <!--<GitHubStatCard title="Friends online" value="Coming soon..."/>-->
             <PlaceholderCard color="primary"/>
             <!--<GitHubStatCard title="Commits today" value="20"/>-->
