@@ -47,32 +47,6 @@ export async function getOsType(): Promise<String> {
 }
 
 /**
- * Handles the online time of the device
- */
-export function getScreenTime(): string {
-    const timeInMinutes: number = Number(localStorage.getItem("dailyOnlineTime"));
-    const timeInHours: number = Number(localStorage.getItem("dailyOnlineHours"));
-
-    if (timeInHours === 0) {
-        return String(timeInMinutes);
-    } else {
-        return timeInHours + "h" + timeInMinutes;
-    }
-}
-
-export function startRecordingScreenTime(): void {
-    let currentTimeInMinutes: number = Number(localStorage.getItem("dailyOnlineMinutes"))
-    let currentTimeInHours: number = Number(localStorage.getItem("dailyOnlineHours"))
-    ++currentTimeInMinutes;
-
-    if (currentTimeInMinutes == 60) {
-        localStorage.setItem("dailyOnlineHours", currentTimeInHours.toString());
-        currentTimeInMinutes = 0;
-    }
-    localStorage.setItem("dailyOnlineMinutes", currentTimeInMinutes.toString());
-}
-
-/**
  * GitHub API call to fetch various public data from a user such as
  * - followers count (with _url)
  * - public repos count

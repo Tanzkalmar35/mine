@@ -4,14 +4,12 @@
     import HomePage from "./lib/appcomponents/homepage/HomePage.svelte";
     import LoginPage from "./lib/appcomponents/login/LoginPage.svelte";
     import {onMount} from "svelte";
-    import {setup} from "./lib/Setup";
-    import {startRecordingScreenTime} from "./lib/appcomponents/homepage/CardDataUtils";
+    import {setup} from "./lib/osoperations/Setup";
 
     let currentUrl: string = window.location.pathname;
 
     onMount(async () => {
         if (!localStorage.getItem("setupCompleted")) setup()
-        setInterval(startRecordingScreenTime, 60000)
     });
 </script>
 

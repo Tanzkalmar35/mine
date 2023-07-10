@@ -15,8 +15,5 @@ export function setup(): void {
     localStorage.setItem("defaultEditor", "");
     localStorage.setItem("githubUsername", "");
 
-    localStorage.setItem("dailyOnlineMinutes", "0");
-    localStorage.setItem("dailyOnlineHours", "0");
-
     localStorage.setItem("setupCompleted", "true");
 }
