@@ -5,7 +5,8 @@
     import InfoCard from "../../uielements/cards/HomePageInfoCard.svelte";
     import InvisibleCard from "../../uielements/cards/InvisibleCard.svelte";
     import PlaceholderCard from "../../uielements/cards/PlaceholderCard.svelte";
-    import {fetchGithubRepo, getMemoryUsage, getOsType, getSwapUsage} from "./CardDataUtils";
+    import {getMemoryUsage, getOsType, getSwapUsage} from "./CardDataUtils";
+    import {fetchGithubRepo} from "../../api/github/GitHubApiWrapper";
 
     let os: string;
     let swap: string = "0";
@@ -19,6 +20,7 @@
         getOsType().then(value => {
             os = value;
         });
+
         fetchGithubRepo(localStorage.getItem("githubUsername"));
         setInterval(setSystemData, 1500);
     });
