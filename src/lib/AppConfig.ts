@@ -11,8 +11,6 @@ export const userDetailGitHubName = writable("");
 
 export const defaultEditorPath = writable("");
 
-// TODO: editor path currently gets ignored
-
 export const ALERT_TYPE = {
     ERROR: "ERROR",
     WARNING: "WARNING",
