@@ -1,14 +1,13 @@
 import {invoke} from '@tauri-apps/api/tauri';
 import {intellijUltimatePath, vsCodePath} from "./OsVariableStore";
 import {get} from "svelte/store";
-import {defaultEditorPath} from "../AppConfig";
 
 /**
  * Opens the given file in the editor
  * @param folderPath the path to the folder to open
  * @param editorPath the editor to open the folder in
  */
-export async function openFolderInEditor(folderPath, editorPath): Promise<void> {
+export async function openFolderInEditor(folderPath: string, editorPath: string): Promise<void> {
     try {
         await invoke('open_editor_with_folder', {
             args: {folder_path: folderPath, editor_path: editorPath}

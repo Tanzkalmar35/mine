@@ -19,7 +19,7 @@ export function handleError(errorCode: string, login: boolean, email: string, pa
             setFormError("Invalid email address", "email")
             break;
         case "auth/email-already-in-use":
-            !login ? setFormError("This email is already in use.", "email") : "";
+            if (!login) setFormError("This email is already in use.", "email");
             loginToExistingUser(email, password);
             break;
         case "auth/wrong-password":

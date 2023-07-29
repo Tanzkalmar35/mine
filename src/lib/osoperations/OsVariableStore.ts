@@ -8,6 +8,5 @@ function convertPath(input: string): string {
         .join('/');
 }
 
-// The path to the IntelliJ IDEA ultimate executable
 export const intellijUltimatePath = readable(convertPath(process.env.intellij + "/idea64.exe"));
 export const vsCodePath = readable(convertPath(process.env.vscode + "/code.exe"));

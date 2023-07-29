@@ -3,7 +3,7 @@ import {invoke} from "@tauri-apps/api/tauri";
 /**
  * Returns the memory usage of the device
  */
-export async function getMemoryUsage(): Promise<String> {
+export async function getMemoryUsage(): Promise<string> {
     let memoryUsage: string = "0";
     try {
         await invoke('get_memory_usage').then((result): void => {
@@ -18,7 +18,7 @@ export async function getMemoryUsage(): Promise<String> {
 /**
  * Returns the Cpu usage of the device
  */
-export async function getSwapUsage(): Promise<String> {
+export async function getSwapUsage(): Promise<string> {
     let cpuUsage: string = "0";
     try {
         await invoke('get_swap_usage').then((result): void => {
@@ -33,7 +33,7 @@ export async function getSwapUsage(): Promise<String> {
 /**
  * Returns the OS type of the device
  */
-export async function getOsType(): Promise<String> {
+export async function getOsType(): Promise<string> {
     let osType: string = "0";
     try {
         await invoke('get_os_type').then((result): void => {
